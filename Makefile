@@ -6,27 +6,32 @@
 #    By: gries <gries@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/03/27 17:25:40 by gries            ###   ########.fr        #
+#    Updated: 2026/03/30 20:08:03 by gries            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 CC = cc
-CFLAGS = -Wextra -Wall -Werror -I includes
-# LDFLAGS = -lreadline
+CFLAGS = -Wextra -Wall -Werror -I $(INC_DIR)
 RM = rm -f
 
 SRC_DIR = src/
 MAIN_DIR = $(SRC_DIR)/main/
 PAR_DIR = $(SRC_DIR)/parser/
 ENG_DIR = $(SRC_DIR)/engine/
+INC_DIR = inc/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
 
-MAIN_FILES =
+MAIN_FILES = 99_freeing_tools.c
 
-PAR_FILES = parserino.c
+PAR_FILES = -1_tester_main.c \
+			0_create_settings.c \
+			1_filepath_handling.c \
+			2_cub_sanitizer.c \
+			3_texture_handling.c \
+			4_color_handling.c
 
 ENG_FILES =
 
