@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   settings.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 13:07:42 by craabe            #+#    #+#             */
-/*   Updated: 2026/03/24 17:08:56 by craabe           ###   ########.fr       */
+/*   Updated: 2026/03/30 20:11:56 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,23 @@ typedef struct s_tex_info
 
 typedef struct s_color_info
 {
-	char			*floor_color;
-	char			*ceil_color;
+	int			floor_color;
+	int			ceil_color;
 }					t_color_info;
+
+typedef struct s_map_info
+{
+	int				x_width;
+	int				y_height;
+	char			**map;
+}					t_map_info;
 
 typedef struct s_settings
 {
-	char			**map;
-
-	t_tex_info		tex_info;
-	t_color_info	color_info;
+	char			*cub_path;
+	t_tex_info		*tex_info;
+	t_color_info	*color_info;
+	t_map_info		*map_info;
 
 }					t_settings;
 
