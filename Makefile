@@ -6,7 +6,7 @@
 #    By: gries <gries@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/03/31 11:04:45 by gries            ###   ########.fr        #
+#    Updated: 2026/03/31 22:09:52 by gries            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ PAR_FILES = -1_tester_main.c \
 			3_texture_handling.c \
 			4_color_handling.c \
 			5_map_handling.c \
-			6_map_list_util.c
+			6_map_list_util.c \
+			7_map_verification.c
 
 ENG_FILES =
 
