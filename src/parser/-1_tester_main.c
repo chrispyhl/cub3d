@@ -23,9 +23,18 @@ int	main(int argc, char *argv[])
 	ft_printf("NO: '%s'\n", settings->tex_info->no_tex);
 	ft_printf("SO: '%s'\n", settings->tex_info->so_tex);
 	ft_printf("WE: '%s'\n", settings->tex_info->we_tex);
-	ft_printf("EA: '%s'\n", settings->tex_info->ea_tex);
+	ft_printf("EA: '%s'\n\n", settings->tex_info->ea_tex);
 	ft_printf("Floor: %i\n", settings->color_info->floor_color);
-	ft_printf("Ceiling: %i\n", settings->color_info->ceil_color);
+	ft_printf("Ceiling: %i\n\n", settings->color_info->ceil_color);
+	ft_printf("Map:\n");
+
+	int i;
+	i = 0;
+	while (settings->map_info->map[i])
+	{
+		printf("'%s'\n", settings->map_info->map[i]);
+		i++;
+	}
 
 	free_settings(settings);
 	return (0);

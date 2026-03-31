@@ -6,7 +6,7 @@
 /*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 13:07:42 by craabe            #+#    #+#             */
-/*   Updated: 2026/03/30 20:11:56 by gries            ###   ########.fr       */
+/*   Updated: 2026/03/31 10:51:03 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ typedef struct s_tex_info
 
 typedef struct s_color_info
 {
-	int			floor_color;
-	int			ceil_color;
+	int				floor_color;
+	int				ceil_color;
 }					t_color_info;
 
 typedef struct s_map_info
 {
-	int				x_width;
-	int				y_height;
+	size_t			x_width;
+	size_t			y_height;
 	char			**map;
 }					t_map_info;
 
