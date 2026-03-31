@@ -6,7 +6,7 @@
 /*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 17:05:25 by craabe            #+#    #+#             */
-/*   Updated: 2026/03/30 20:28:14 by gries            ###   ########.fr       */
+/*   Updated: 2026/03/31 09:43:04 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ static t_settings	*create_settings_var(char *arg)
 	t_color_info	*color_info;
 	t_map_info		*map_info;
 
-	settings = malloc(sizeof(t_settings));
+	settings = ft_calloc(1, sizeof(t_settings));
 	if (!settings)
 		return (NULL);
-	tex_info = malloc(sizeof(t_tex_info));
+	tex_info = ft_calloc(1, sizeof(t_tex_info));
 	settings->tex_info = tex_info;
-	color_info = malloc(sizeof(t_color_info));
+	color_info = ft_calloc(1, sizeof(t_color_info));
 	settings->color_info = color_info;
-	map_info = malloc(sizeof(t_map_info));
+	map_info = ft_calloc(1, sizeof(t_map_info));
 	settings->map_info = map_info;
 	if (!tex_info || !color_info || !map_info || handle_cub_path(arg,
 			settings) != 1)
