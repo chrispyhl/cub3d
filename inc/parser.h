@@ -40,4 +40,7 @@ t_map_list				*populate_map_list(void);
 void					free_map_list(t_map_list *map_list);
 int						add_map_node(t_map_list *map_list, char *line);
 
+// MAP VERIFICATION
+int						verify_map(t_settings *settings);
+
 #endif
