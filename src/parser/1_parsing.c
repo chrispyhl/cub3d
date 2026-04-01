@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:56 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 16:36:10 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 17:08:23 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	process_line(t_settings *settings, t_map_list *map_list,
 	{
 		if (line[0] == 'N' || line[0] == 'S' || line[0] == 'W' || line[0] == 'E'
 			|| line[0] == '0')
-			ft_putstr_fd("ERROR:\nMap border(s) inconsistent.\n", 1);
+			ft_putstr_fd("ERROR:\nMap border(s) invalid.\n", 1);
 		else
 			ft_putstr_fd("ERROR:\nInvalid .cub-content.\n", 1);
 		*valid_flag = 0;

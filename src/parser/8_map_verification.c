@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:31 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 16:45:42 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 17:06:34 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	print_error_msg(int code)
 {
 	if (code == 0)
-		ft_putstr_fd("ERROR:\nMap invalidly constructed or missing.\n", 1);
+		ft_putstr_fd("ERROR:\nMap too small or missing.\n", 1);
 	if (code == 1)
 		ft_putstr_fd("ERROR:\nMap contains invalid content.\n", 1);
 	else if (code == 2)
