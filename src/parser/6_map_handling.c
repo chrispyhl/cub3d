@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   5_map_handling.c                                   :+:      :+:    :+:   */
+/*   6_map_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:23 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 09:56:25 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 11:19:21 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static void	strip_newlines_spaces(t_settings *settings)
 	{
 		j = ft_strlen(map_array[i]) - 1;
 		while (j > 0 && (map_array[i][j] == ' ' || map_array[i][j] == '\t'
-				|| map_array[i][j] == '\n'))
+				|| map_array[i][j] == '\n' || map_array[i][j] == '\r'))
 			j--;
 		map_array[i][j + 1] = '\0';
 		i++;
