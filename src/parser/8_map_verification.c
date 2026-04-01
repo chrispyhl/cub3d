@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   7_map_verification.c                               :+:      :+:    :+:   */
+/*   8_map_verification.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:31 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 09:56:34 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 11:10:03 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	verify_map_info(t_settings *settings)
 {
 	if (settings->map_info->x_width < 3 || settings->map_info->y_height < 3
 		|| !settings->map_info->map)
+	{
+		ft_putstr_fd("ERROR: Map invalidly constructed or missing.\n", 1);
 		return (0);
+	}
 	// if (verify_map(settings) != 1)
 	// 	return (0);
 	return (1);
