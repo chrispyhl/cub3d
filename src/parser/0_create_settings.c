@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_create_settings.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 17:05:25 by craabe            #+#    #+#             */
-/*   Updated: 2026/03/31 11:04:19 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/01 09:55:53 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,49 +52,6 @@ static t_settings	*create_settings_var(char *arg)
 	return (settings);
 }
 
-static void	process_line(t_settings *settings, t_map_list *map_list,
-		char *raw_line, int *valid_flag)
-{
-	char	*line;
-
-	line = sanitize_line(raw_line);
-	if (*valid_flag == 1 && (ft_strncmp(line, "NO ", 3) == 0 || ft_strncmp(line,
-				"SO ", 3) == 0 || ft_strncmp(line, "WE ", 3) == 0
-			|| ft_strncmp(line, "EA ", 3) == 0))
-		*valid_flag = add_tex_info(settings, line);
-	else if (*valid_flag == 1 && (ft_strncmp(line, "F ", 2) == 0
-			|| ft_strncmp(line, "C ", 2) == 0))
-		*valid_flag = add_color_info(settings, line);
-	else if (*valid_flag == 1 && line[0] == '1')
-		if (add_map_node(map_list, raw_line) == -1)
-			*valid_flag = 0;
-	free(raw_line);
-	free(line);
-}
-
-static int	parse_cub(t_settings *settings)
-{
-	int			fd;
-	char		*raw_line;
-	int			valid_flag;
-	t_map_list	*map_list;
-
-	fd = open(settings->cub_path, O_RDONLY);
-	raw_line = get_next_line(fd);
-	valid_flag = 1;
-	map_list = populate_map_list();
-	while (raw_line)
-	{
-		process_line(settings, map_list, raw_line, &valid_flag);
-		raw_line = get_next_line(fd);
-	}
-	close(fd);
-	if (add_map_info(settings, map_list) != 1)
-		valid_flag = 0;
-	free_map_list(map_list);
-	return (valid_flag);
-}
-
 t_settings	*create_settings(char *arg)
 {
 	t_settings	*settings;
@@ -107,7 +64,6 @@ t_settings	*create_settings(char *arg)
 		free_settings(settings);
 		return (NULL);
 	}
-	// TODO: add map verification function call
 	if (verify_tex_info(settings) != 1 || verify_color_info(settings) != 1
 		|| verify_map_info(settings) != 1)
 	{

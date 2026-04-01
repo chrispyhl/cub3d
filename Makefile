@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gries <gries@student.42.fr>                +#+  +:+       +#+         #
+#    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/03/31 22:09:52 by gries            ###   ########.fr        #
+#    Updated: 2026/04/01 10:16:22 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,17 +24,18 @@ INC_DIR = inc/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
 
-MAIN_FILES = 99_freeing_tools.c
+MAIN_FILES =	0_cub3D.c \
+				99_freeing_tools.c
 
-PAR_FILES = -1_tester_main.c \
-			0_create_settings.c \
-			1_filepath_handling.c \
-			2_cub_sanitizer.c \
-			3_texture_handling.c \
-			4_color_handling.c \
-			5_map_handling.c \
-			6_map_list_util.c \
-			7_map_verification.c
+PAR_FILES =	0_create_settings.c \
+			1_parsing.c \
+			2_filepath_handling.c \
+			3_cub_sanitizer.c \
+			4_texture_handling.c \
+			5_color_handling.c \
+			6_map_handling.c \
+			7_map_list_util.c \
+			8_map_verification.c
 
 ENG_FILES =
 
