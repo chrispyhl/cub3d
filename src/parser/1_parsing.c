@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:56 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 10:47:57 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 11:26:08 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,18 @@ static void	process_line(t_settings *settings, t_map_list *map_list,
 			|| ft_strncmp(line, "C ", 2) == 0))
 		*valid_flag = handler_selector(COLOR, settings, map_list, line);
 	else if (*valid_flag == 1 && line[0] == '1')
+	{
 		if (map_list->map_parsed == 1 || add_map_node(map_list, raw_line) != 1)
 		{
 			ft_putstr_fd("ERROR: Gap in map.\n", 1);
 			*valid_flag = 0;
 		}
+	}
+	else if (*valid_flag == 1 && line[0] != '\0')
+	{
+		ft_putstr_fd("ERROR: Invalid .cub-content.\n", 1);
+		*valid_flag = 0;
+	}
 	if (map_list->map_parsed == 0 && *valid_flag == 1 && map_list->size > 0
 		&& line[0] != '1')
 		map_list->map_parsed = 1;
