@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:56 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 11:26:08 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 16:36:10 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	handler_selector(t_cub_content content, t_settings *settings,
 	{
 		if (map_list->size > 0)
 		{
-			ft_putstr_fd("ERROR: Texture path and map interfering.\n", 1);
+			ft_putstr_fd("ERROR:\nTexture path and map interfering.\n", 1);
 			return (0);
 		}
 		return (add_tex_info(settings, line));
@@ -28,7 +28,7 @@ static int	handler_selector(t_cub_content content, t_settings *settings,
 	{
 		if (map_list->size > 0)
 		{
-			ft_putstr_fd("ERROR: Color code and map interfering.\n", 1);
+			ft_putstr_fd("ERROR:\nColor code and map interfering.\n", 1);
 			return (0);
 		}
 		return (add_color_info(settings, line));
@@ -53,13 +53,17 @@ static void	process_line(t_settings *settings, t_map_list *map_list,
 	{
 		if (map_list->map_parsed == 1 || add_map_node(map_list, raw_line) != 1)
 		{
-			ft_putstr_fd("ERROR: Gap in map.\n", 1);
+			ft_putstr_fd("ERROR:\nGap in map.\n", 1);
 			*valid_flag = 0;
 		}
 	}
 	else if (*valid_flag == 1 && line[0] != '\0')
 	{
-		ft_putstr_fd("ERROR: Invalid .cub-content.\n", 1);
+		if (line[0] == 'N' || line[0] == 'S' || line[0] == 'W' || line[0] == 'E'
+			|| line[0] == '0')
+			ft_putstr_fd("ERROR:\nMap border(s) inconsistent.\n", 1);
+		else
+			ft_putstr_fd("ERROR:\nInvalid .cub-content.\n", 1);
 		*valid_flag = 0;
 	}
 	if (map_list->map_parsed == 0 && *valid_flag == 1 && map_list->size > 0
