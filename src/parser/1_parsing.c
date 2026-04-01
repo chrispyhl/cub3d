@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_z_parsing.c                                      :+:      :+:    :+:   */
+/*   1_parsing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:56 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 10:13:32 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 10:47:57 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,19 @@ static int	handler_selector(t_cub_content content, t_settings *settings,
 	{
 		if (map_list->size > 0)
 		{
-			ft_putstr_fd("ERROR: Color codes and map interfering.\n", 1);
+			ft_putstr_fd("ERROR: Color code and map interfering.\n", 1);
 			return (0);
 		}
 		return (add_color_info(settings, line));
 	}
+	return (1);
 }
 
 static void	process_line(t_settings *settings, t_map_list *map_list,
 		char *raw_line, int *valid_flag)
 {
 	char	*line;
-	int		map_closed;
 
-	map_closed = 0;
 	line = sanitize_line(raw_line);
 	if (*valid_flag == 1 && (ft_strncmp(line, "NO ", 3) == 0 || ft_strncmp(line,
 				"SO ", 3) == 0 || ft_strncmp(line, "WE ", 3) == 0
@@ -51,15 +50,14 @@ static void	process_line(t_settings *settings, t_map_list *map_list,
 			|| ft_strncmp(line, "C ", 2) == 0))
 		*valid_flag = handler_selector(COLOR, settings, map_list, line);
 	else if (*valid_flag == 1 && line[0] == '1')
-		if (add_map_node(map_list, raw_line) == -1)
+		if (map_list->map_parsed == 1 || add_map_node(map_list, raw_line) != 1)
+		{
+			ft_putstr_fd("ERROR: Gap in map.\n", 1);
 			*valid_flag = 0;
-	if (map_closed == 1 && line[0] == '1')
-	{
-		ft_putstr_fd("ERROR: Gap in map.\n", 1);
-		*valid_flag = 0;
-	}
-	if (map_list->size > 0 && line[0] != '1')
-		map_closed = 1;
+		}
+	if (map_list->map_parsed == 0 && *valid_flag == 1 && map_list->size > 0
+		&& line[0] != '1')
+		map_list->map_parsed = 1;
 	free(raw_line);
 	free(line);
 }

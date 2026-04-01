@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:29 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 09:59:51 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 10:45:45 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_map_list
 	t_map_node			*first;
 	t_map_node			*last;
 	size_t				size;
+	int					map_parsed;
 }						t_map_list;
 
 // SETTINGS CREATION
