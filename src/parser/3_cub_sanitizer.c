@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2_cub_sanitizer.c                                  :+:      :+:    :+:   */
+/*   3_cub_sanitizer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:05 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 09:56:08 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 11:25:44 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ static char	*shorten_spaces(char *full_str, int str_len)
 		// thought I needed escaped space handling but mb not?
 		// if (full_str[j] == '\\' && full_str[j + 1] == ' ')
 		// 	j++;
+		if (full_str[j] == '\n' || full_str[j] == '\r')
+			break ;
 		short_str[i] = full_str[j];
 		i++;
 		j++;
 		while (full_str[j] == ' ' && full_str[j - 1] == ' ')
 			j++;
-		if (full_str[j] == '\n')
-			break;
 	}
 	short_str[i] = '\0';
 	return (short_str);
