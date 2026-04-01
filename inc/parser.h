@@ -1,9 +1,26 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/01 09:55:29 by craabe            #+#    #+#             */
+/*   Updated: 2026/04/01 09:59:51 by craabe           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
 # include "main.h"
+
+typedef enum e_cub_content
+{
+	TEXTURE,
+	COLOR,
+	MAP
+}						t_cub_content;
 
 // linked list for map lines (will become string array in main struct t_settings)
 typedef struct s_map_node
@@ -24,6 +41,9 @@ int						add_tex_info(t_settings *settings, char *line);
 int						add_color_info(t_settings *settings, char *line);
 int						add_map_info(t_settings *settings,
 							t_map_list *map_list);
+
+// parsing
+int						parse_cub(t_settings *settings);
 
 // VERIFICATION
 int						verify_tex_info(t_settings *settings);
