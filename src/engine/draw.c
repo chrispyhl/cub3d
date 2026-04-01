@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 17:38:23 by cpohl             #+#    #+#             */
-/*   Updated: 2025/12/08 13:59:45 by cpohl            ###   ########.fr       */
+/*   Created: 2026/04/01 15:21:56 by cpohl             #+#    #+#             */
+/*   Updated: 2026/04/01 15:50:25 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "garbage_collector.h"
+#include "engine.h"
 
-void	*ft_malloc(size_t count, size_t size)
+void	draw_game(t_engine *engine)
 {
-	void	*ptr;
+	int	x;
+	int	y;
 
-	ptr = ft_calloc(count, size);
-	if (!ptr)
-		return (NULL);
-	gc_add(ptr);
-	return (ptr);
+	x = 0;
+	while (x < WIDTH)
+	{
+		y = 0;
+		while (y < HEIGHT)
+		{
+			
+			y++;
+		}
+		x++;
+	}
 }
