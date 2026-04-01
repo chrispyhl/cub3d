@@ -6,13 +6,16 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 16:57:04 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 13:24:52 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/01 15:27:05 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
+# define WIDTH 800
+# define HEIGHT 600
+# define FOV 60
 # define PI 3.1415926535
 
 # ifndef PATH

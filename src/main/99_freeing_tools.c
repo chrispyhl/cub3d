@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   99_freeing_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:48 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 09:55:51 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 15:00:38 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/defines.h"
 #include "../../inc/includes.h"
 #include "../../inc/settings.h"
+
+void free_engine(t_engine *engine)
+{
+	free_settings(engine->settings);
+}
 
 void	free_array(char **array)
 {
