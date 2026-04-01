@@ -6,7 +6,7 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 13:07:42 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 13:24:57 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/01 17:11:52 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,18 @@ typedef struct s_color_info
 
 typedef struct s_map_info
 {
+	char			**map;
 	size_t			x_width;
 	size_t			y_height;
-	char			**map;
+	int				spill_flag;
 }					t_map_info;
+
+typedef struct s_player_info
+{
+	double			player_x;
+	double			player_y;
+	char			dir;
+}					t_player_info;
 
 typedef struct s_settings
 {
@@ -40,6 +48,7 @@ typedef struct s_settings
 	t_tex_info		*tex_info;
 	t_color_info	*color_info;
 	t_map_info		*map_info;
+	t_player_info	*player_info;
 
 }					t_settings;
 

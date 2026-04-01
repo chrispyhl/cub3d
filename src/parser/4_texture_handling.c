@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:10 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 10:16:00 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 14:43:31 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 static void	print_tex_error_msg(int code)
 {
 	if (code == 0)
-		ft_putstr_fd("ERROR: Texture for north wall missing,"
+		ft_putstr_fd("ERROR:\nTexture for north wall missing,"
 						" invalid or inaccessable.\n",
 						1);
 	else if (code == 1)
-		ft_putstr_fd("ERROR: Texture for south wall missing,"
+		ft_putstr_fd("ERROR:\nTexture for south wall missing,"
 						" invalid or inaccessable.\n",
 						1);
 	else if (code == 2)
-		ft_putstr_fd("ERROR: Texture for west wall missing,"
+		ft_putstr_fd("ERROR:\nTexture for west wall missing,"
 						" invalid or inaccessable.\n",
 						1);
 	else if (code == 3)
-		ft_putstr_fd("ERROR: Texture for east wall missing,"
+		ft_putstr_fd("ERROR:\nTexture for east wall missing,"
 						" invalid or inaccessable.\n",
 						1);
 }
@@ -35,13 +35,13 @@ static void	print_tex_error_msg(int code)
 static int	return_tex_dup_error(int code)
 {
 	if (code == 0)
-		ft_putstr_fd("ERROR: Duplicate texture for north wall.\n", 1);
+		ft_putstr_fd("ERROR:\nDuplicate texture for north wall.\n", 1);
 	else if (code == 1)
-		ft_putstr_fd("ERROR: Duplicate texture for south wall.\n", 1);
+		ft_putstr_fd("ERROR:\nDuplicate texture for south wall.\n", 1);
 	else if (code == 2)
-		ft_putstr_fd("ERROR: Duplicate texture for west wall.\n", 1);
+		ft_putstr_fd("ERROR:\nDuplicate texture for west wall.\n", 1);
 	else if (code == 3)
-		ft_putstr_fd("ERROR: Duplicate texture for east wall.\n", 1);
+		ft_putstr_fd("ERROR:\nDuplicate texture for east wall.\n", 1);
 	return (0);
 }
 

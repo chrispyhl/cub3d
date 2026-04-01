@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   1_filepath_handling.c                              :+:      :+:    :+:   */
+/*   2_filepath_handling.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:01 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 09:56:03 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 14:43:31 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ int	handle_cub_path(char *path, t_settings *settings)
 	stripped_path = trim_space_tabs(path);
 	if (!stripped_path)
 	{
-		ft_putstr_fd("ERROR: Invalid filepath.\n", 1);
+		ft_putstr_fd("ERROR:\nInvalid filepath.\n", 1);
 		return (0);
 	}
 	if (check_filetype(stripped_path) != 1)
 	{
-		ft_putstr_fd("ERROR: Not a .cub file.\n", 1);
+		ft_putstr_fd("ERROR:\nNot a .cub file.\n", 1);
 		free(stripped_path);
 		return (0);
 	}
@@ -47,7 +47,7 @@ int	handle_cub_path(char *path, t_settings *settings)
 	if (fd == -1)
 	{
 		free(stripped_path);
-		ft_putstr_fd("ERROR: Can't open file.\n", 1);
+		ft_putstr_fd("ERROR:\nCan't open file.\n", 1);
 		return (0);
 	}
 	close(fd);

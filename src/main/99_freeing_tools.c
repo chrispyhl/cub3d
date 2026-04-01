@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:48 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 09:55:51 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 16:34:05 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	free_settings(t_settings *settings)
 			free_array(settings->map_info->map);
 			free(settings->map_info);
 		}
+		if (settings->player_info)
+			free(settings->player_info);
 		free(settings);
 	}
 }

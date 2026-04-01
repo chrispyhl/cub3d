@@ -6,38 +6,177 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:31 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 11:10:03 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/01 17:06:34 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
 
-// static int	check_chars(char **map)
-// {
-// 	int	i;
-// 	int	j;
+static int	print_error_msg(int code)
+{
+	if (code == 0)
+		ft_putstr_fd("ERROR:\nMap too small or missing.\n", 1);
+	if (code == 1)
+		ft_putstr_fd("ERROR:\nMap contains invalid content.\n", 1);
+	else if (code == 2)
+		ft_putstr_fd("ERROR:\nToo many players on map.\n", 1);
+	else if (code == 3)
+		ft_putstr_fd("ERROR:\nNo player on map.\n", 1);
+	else if (code == 4)
+		ft_putstr_fd("ERROR:\nDuplicate allocation failed.\n", 1);
+	else if (code == 5)
+		ft_putstr_fd("ERROR:\nMap border(s) inconsistent.\n", 1);
+	return (0);
+}
 
-// 	i = 0;
-// 	while (map[i])
-// 	{
-// 		j = 0;
-// 		while (map[i][j] == ' ')
-// 			j++;
-// 		if (map[i][j] != '1' || map[i][ft_strlen(map[i] - 1)])
-// 		i++;
-// 	}
-// 	return (1);
-// }
+static int	add_player_info(t_settings *settings, int i, int j, char dir)
+{
+	if (settings->player_info->dir != 'x')
+		return (0);
+	settings->player_info->dir = dir;
+	settings->player_info->player_x = ((double)j) + 0.5;
+	settings->player_info->player_y = ((double)i) + 0.5;
+	return (1);
+}
+
+static int	verify_contents(t_settings *settings)
+{
+	size_t	i;
+	size_t	j;
+	char	current_char;
+
+	i = 0;
+	while (settings->map_info->map[i])
+	{
+		j = 0;
+		while (settings->map_info->map[i][j])
+		{
+			current_char = settings->map_info->map[i][j];
+			if (current_char != 'N' && current_char != 'S'
+				&& current_char != 'W' && current_char != 'E'
+				&& current_char != '1' && current_char != '0'
+				&& current_char != ' ')
+				return (print_error_msg(1));
+			else if (current_char == 'N' || current_char == 'S'
+				|| current_char == 'W' || current_char == 'E')
+				if (add_player_info(settings, i, j, current_char) != 1)
+					return (print_error_msg(2));
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+static char	**duplicate_map(t_settings *settings)
+{
+	char	**dup;
+	size_t	i;
+
+	dup = ft_calloc(settings->map_info->y_height + 1, sizeof(char *));
+	if (!dup)
+		return (NULL);
+	i = 0;
+	while (settings->map_info->map[i])
+	{
+		dup[i] = ft_strdup(settings->map_info->map[i]);
+		if (!dup[i])
+		{
+			free_array(dup);
+			return (NULL);
+		}
+		i++;
+	}
+	return (dup);
+}
+
+static void	flood_fill(char **map, size_t x, size_t y, t_settings *settings)
+{
+	if (settings->map_info->spill_flag == 0)
+	{
+		if (y > settings->map_info->y_height
+			|| x > ft_strlen(settings->map_info->map[y]))
+		{
+			settings->map_info->spill_flag = 1;
+			return ;
+		}
+		else if (map[y][x] == ' ')
+		{
+			settings->map_info->spill_flag = 1;
+			return ;
+		}
+		else if (map[y][x] == '1' || map[y][x] == 'F')
+			return ;
+		else
+			map[y][x] = 'F';
+		flood_fill(map, x + 1, y, settings);
+		if (x > 0)
+			flood_fill(map, x - 1, y, settings);
+		flood_fill(map, x, y + 1, settings);
+		if (y > 0)
+			flood_fill(map, x, y - 1, settings);
+	}
+}
+
+static int	check_backrooms(char **map, t_settings *settings)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0')
+			{
+				flood_fill(map, j, i, settings);
+				if (settings->map_info->spill_flag == 1)
+					return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+static int	verify_borders(t_settings *settings)
+{
+	char	**dup;
+	int		spill_flag;
+
+	dup = duplicate_map(settings);
+	if (!dup)
+		return (print_error_msg(4));
+	spill_flag = 0;
+	flood_fill(dup, settings->player_info->player_x,
+		settings->player_info->player_y, settings);
+	if (settings->map_info->spill_flag == 1)
+	{
+		free_array(dup);
+		return (0);
+	}
+	if (check_backrooms(dup, settings) != 1)
+	{
+		free_array(dup);
+		return (0);
+	}
+	free_array(dup);
+	return (1);
+}
 
 int	verify_map_info(t_settings *settings)
 {
 	if (settings->map_info->x_width < 3 || settings->map_info->y_height < 3
 		|| !settings->map_info->map)
-	{
-		ft_putstr_fd("ERROR: Map invalidly constructed or missing.\n", 1);
+		return (print_error_msg(0));
+	if (verify_contents(settings) != 1)
 		return (0);
-	}
-	// if (verify_map(settings) != 1)
-	// 	return (0);
+	if (settings->player_info->dir == 'x')
+		return (print_error_msg(3));
+	if (verify_borders(settings) != 1)
+		return (print_error_msg(5));
 	return (1);
 }
