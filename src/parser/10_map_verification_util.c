@@ -22,8 +22,8 @@ static void	flood_fill(char **map, size_t x, size_t y, t_settings *settings)
 {
 	if (settings->map_info->spill_flag == 0)
 	{
-		if (y > settings->map_info->y_height
-			|| x > ft_strlen(settings->map_info->map[y]))
+		if (y >= settings->map_info->y_height
+			|| x >= ft_strlen(settings->map_info->map[y]))
 		{
 			settings->map_info->spill_flag = 1;
 			return ;
