@@ -60,3 +60,4 @@ obj/parser/5_color_handling.o
 obj/parser/6_map_handling.o
 obj/parser/7_map_list_util.o
 obj/parser/8_map_verification.o
+.vscode/settings.json
