@@ -3,100 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   0_cub3D.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:44 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 17:00:22 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/03 18:11:12 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/main.h"
-#include <stdio.h>
-#include <stdlib.h>
+// #include "../../inc/main.h"
+// #include <stdio.h>
+// #include <stdlib.h>
 
-/* Replace this with your actual cub3d header file */
-/* #include "cub3d.h" */
+// /* Replace this with your actual cub3d header file */
+// /* #include "cub3d.h" */
 
-#define GREEN "\033[0;32m"
-#define RED "\033[0;31m"
-#define RESET "\033[0m"
+// #define GREEN "\033[0;32m"
+// #define RED "\033[0;31m"
+// #define RESET "\033[0m"
 
-/* Dummy declarations to illustrate the structure. Remove these if using your header. */
-typedef struct s_settings t_settings;
-t_settings  *create_settings(char *arg);
-void        free_settings(t_settings *settings); 
+// /* Dummy declarations to illustrate the structure. Remove these if using your header. */
+// typedef struct s_settings t_settings;
+// t_settings  *create_settings(char *arg);
+// void        free_settings(t_settings *settings); 
 
-void    test_maps(char **maps, int expect_valid)
-{
-    int         i;
-    t_settings  *result;
+// void    test_maps(char **maps, int expect_valid)
+// {
+//     int         i;
+//     t_settings  *result;
 
-    i = 0;
-    while (maps[i] != NULL)
-    {
-        printf("Testing: %s\n-> ", maps[i]);
+//     i = 0;
+//     while (maps[i] != NULL)
+//     {
+//         printf("Testing: %s\n-> ", maps[i]);
         
-        result = create_settings(maps[i]);
+//         result = create_settings(maps[i]);
         
-        if (expect_valid == 1)
-        {
-            if (result != NULL)
-            {
-                printf(GREEN "OK\n" RESET);
-                free_settings(result);
-            }
-            else
-                printf(RED "KO (Expected Valid, got Invalid)\n" RESET);
-        }
-        else
-        {
-            if (result == NULL)
-                printf(GREEN "OK (Properly rejected)\n" RESET);
-            else
-            {
-                printf(RED "KO (Invalid map was accepted!)\n" RESET);
-                free_settings(result);
-            }
-        }
-        printf("----------------------------------------\n");
-        i++;
-    }
-}
+//         if (expect_valid == 1)
+//         {
+//             if (result != NULL)
+//             {
+//                 printf(GREEN "OK\n" RESET);
+//                 free_settings(result);
+//             }
+//             else
+//                 printf(RED "KO (Expected Valid, got Invalid)\n" RESET);
+//         }
+//         else
+//         {
+//             if (result == NULL)
+//                 printf(GREEN "OK (Properly rejected)\n" RESET);
+//             else
+//             {
+//                 printf(RED "KO (Invalid map was accepted!)\n" RESET);
+//                 free_settings(result);
+//             }
+//         }
+//         printf("----------------------------------------\n");
+//         i++;
+//     }
+// }
 
-int main(void)
-{
-    char *invalid_maps[] = {
-        "cub_files/invalid/duplicate_tex.cub",
-        "cub_files/invalid/fractured_map.cub",
-        "cub_files/invalid/invalid_border.cub",
-        "cub_files/invalid/invalid_border2.cub",
-        "cub_files/invalid/invalid_content.cub",
-        "cub_files/invalid/invalid_unreachable_room.cub",
-        "cub_files/invalid/missing_info.cub",
-        "cub_files/invalid/missing_player.cub",
-        "cub_files/invalid/multiple_players.cub",
-        "cub_files/invalid/no_map.cub",
-        "cub_files/invalid/phase_violation.cub",
-        NULL
-    };
+// int main(void)
+// {
+//     char *invalid_maps[] = {
+//         "cub_files/invalid/duplicate_tex.cub",
+//         "cub_files/invalid/fractured_map.cub",
+//         "cub_files/invalid/invalid_border.cub",
+//         "cub_files/invalid/invalid_border2.cub",
+//         "cub_files/invalid/invalid_content.cub",
+//         "cub_files/invalid/invalid_unreachable_room.cub",
+//         "cub_files/invalid/missing_info.cub",
+//         "cub_files/invalid/missing_player.cub",
+//         "cub_files/invalid/multiple_players.cub",
+//         "cub_files/invalid/no_map.cub",
+//         "cub_files/invalid/phase_violation.cub",
+//         NULL
+//     };
 
-    char *valid_maps[] = {
-        "cub_files/valid/cornerless.cub",
-        "cub_files/valid/garbage_padding.cub",
-        "cub_files/valid/standard.cub",
-        "cub_files/valid/ugly.cub",
-        "cub_files/valid/unreachable_rooms.cub",
-        NULL
-    };
+//     char *valid_maps[] = {
+//         "cub_files/valid/cornerless.cub",
+//         "cub_files/valid/garbage_padding.cub",
+//         "cub_files/valid/standard.cub",
+//         "cub_files/valid/ugly.cub",
+//         "cub_files/valid/unreachable_rooms.cub",
+//         NULL
+//     };
 
-    printf("=== RUNNING INVALID MAP TESTS ===\n");
-    test_maps(invalid_maps, 0);
+//     printf("=== RUNNING INVALID MAP TESTS ===\n");
+//     test_maps(invalid_maps, 0);
     
-    printf("\n=== RUNNING VALID MAP TESTS ===\n");
-    test_maps(valid_maps, 1);
+//     printf("\n=== RUNNING VALID MAP TESTS ===\n");
+//     test_maps(valid_maps, 1);
     
-    return (0);
-}
+//     return (0);
+// }
 
 // #include "../../inc/main.h"
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
+#    By: gries <gries@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/01 10:16:22 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/03 18:06:10 by gries            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,8 +34,10 @@ PAR_FILES =	0_create_settings.c \
 			4_texture_handling.c \
 			5_color_handling.c \
 			6_map_handling.c \
-			7_map_list_util.c \
-			8_map_verification.c
+			7_map_handling_util.c \
+			8_map_list_util.c \
+			9_map_verification.c \
+			10_map_verification_util.c
 
 ENG_FILES =
 

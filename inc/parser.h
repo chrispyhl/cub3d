@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:29 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 10:45:45 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/03 18:06:46 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,20 @@ int						handle_cub_path(char *path, t_settings *settings);
 char					*trim_space_tabs(char *path);
 char					*sanitize_line(char *line);
 
+// MAP HANDLING UTIL
+int						add_padding(t_settings *settings);
+int						left_align_map(t_settings *settings);
+
 // MAP LIST UTILITY
 t_map_list				*populate_map_list(void);
 void					free_map_list(t_map_list *map_list);
 int						add_map_node(t_map_list *map_list, char *line);
 
 // MAP VERIFICATION
-int						verify_map(t_settings *settings);
+int						verify_map_info(t_settings *settings);
+
+// MAP VERIFICATION UTIl
+int						print_tex_ver_error_msg(int code);
+int						verify_borders(t_settings *settings);
 
 #endif
