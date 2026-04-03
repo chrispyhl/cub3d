@@ -6,97 +6,100 @@
 /*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:44 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:11:12 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/03 18:15:19 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../../inc/main.h"
-// #include <stdio.h>
-// #include <stdlib.h>
+#include "../../inc/main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
-// /* Replace this with your actual cub3d header file */
-// /* #include "cub3d.h" */
+#define GREEN "\033[0;32m"
+#define RED "\033[0;31m"
+#define RESET "\033[0m"
 
-// #define GREEN "\033[0;32m"
-// #define RED "\033[0;31m"
-// #define RESET "\033[0m"
+/* Struct to tie a filepath directly to its expected result */
+typedef struct s_test_case {
+    char    *filepath;
+    int     expect_valid; // 1 for valid, 0 for invalid
+} t_test_case;
 
-// /* Dummy declarations to illustrate the structure. Remove these if using your header. */
-// typedef struct s_settings t_settings;
-// t_settings  *create_settings(char *arg);
-// void        free_settings(t_settings *settings); 
+int main(void)
+{
+    t_test_case tests[] = {
+        // Invalid Maps
+        {"cub_files/invalid/duplicate_texture.cub", 0},
+        {"cub_files/invalid/fractured_map.cub", 0},
+        {"cub_files/invalid/invalid_border.cub", 0},
+        {"cub_files/invalid/invalid_border2.cub", 0},
+        {"cub_files/invalid/invalid_color_code.cub", 0},
+        {"cub_files/invalid/invalid_line.cub", 0},
+        {"cub_files/invalid/invalid_unreachable_room.cub", 0},
+        {"cub_files/invalid/missing_color_code.cub", 0},
+        {"cub_files/invalid/missing_player.cub", 0},
+        {"cub_files/invalid/missing_texture.cub", 0},
+        {"cub_files/invalid/multiple_players.cub", 0},
+        {"cub_files/invalid/no_map.cub", 0},
+        {"cub_files/invalid/texture_after_map.cub", 0},
 
-// void    test_maps(char **maps, int expect_valid)
-// {
-//     int         i;
-//     t_settings  *result;
+        // Valid Maps
+        {"cub_files/valid/.cub", 1},
+        {"cub_files/valid/cornerless.cub", 1},
+        {"cub_files/valid/garbage_padding.cub", 1},
+        {"cub_files/valid/standard.cub", 1},
+        {"cub_files/valid/ugly.cub", 1},
+        {"cub_files/valid/unreachable_rooms.cub", 1}
+    };
 
-//     i = 0;
-//     while (maps[i] != NULL)
-//     {
-//         printf("Testing: %s\n-> ", maps[i]);
+    // Automatically calculate the number of tests based on the array size
+    int num_tests = sizeof(tests) / sizeof(tests[0]);
+    int passed = 0;
+
+    printf("=== CUB3D PARSER TEST SUITE ===\n\n");
+
+    for (int i = 0; i < num_tests; i++)
+    {
+        printf("Testing [%d/%d]: %s\n", i + 1, num_tests, tests[i].filepath);
         
-//         result = create_settings(maps[i]);
+        t_settings *result = create_settings(tests[i].filepath);
+        int is_valid = (result != NULL); // Evaluates to 1 if not NULL, 0 if NULL
+
+        // Check if the actual result matches the expected result
+        if (is_valid == tests[i].expect_valid)
+        {
+            printf(GREEN "  [OK] " RESET);
+            if (is_valid) 
+                printf("Valid map parsed successfully.\n");
+            else 
+                printf("Invalid map properly rejected.\n");
+            
+            passed++;
+        }
+        else
+        {
+            printf(RED "  [KO] " RESET);
+            if (tests[i].expect_valid) 
+                printf("Expected valid map, but got NULL (rejected).\n");
+            else 
+                printf("Expected invalid map, but got a t_settings struct (accepted).\n");
+        }
+
+        // Clean up memory if a struct was actually created
+        if (result != NULL)
+            free_settings(result);
         
-//         if (expect_valid == 1)
-//         {
-//             if (result != NULL)
-//             {
-//                 printf(GREEN "OK\n" RESET);
-//                 free_settings(result);
-//             }
-//             else
-//                 printf(RED "KO (Expected Valid, got Invalid)\n" RESET);
-//         }
-//         else
-//         {
-//             if (result == NULL)
-//                 printf(GREEN "OK (Properly rejected)\n" RESET);
-//             else
-//             {
-//                 printf(RED "KO (Invalid map was accepted!)\n" RESET);
-//                 free_settings(result);
-//             }
-//         }
-//         printf("----------------------------------------\n");
-//         i++;
-//     }
-// }
+        printf("--------------------------------------------------\n");
+    }
 
-// int main(void)
-// {
-//     char *invalid_maps[] = {
-//         "cub_files/invalid/duplicate_tex.cub",
-//         "cub_files/invalid/fractured_map.cub",
-//         "cub_files/invalid/invalid_border.cub",
-//         "cub_files/invalid/invalid_border2.cub",
-//         "cub_files/invalid/invalid_content.cub",
-//         "cub_files/invalid/invalid_unreachable_room.cub",
-//         "cub_files/invalid/missing_info.cub",
-//         "cub_files/invalid/missing_player.cub",
-//         "cub_files/invalid/multiple_players.cub",
-//         "cub_files/invalid/no_map.cub",
-//         "cub_files/invalid/phase_violation.cub",
-//         NULL
-//     };
+    // Print final summary
+    printf("\n=== TEST SUMMARY ===\n");
+    if (passed == num_tests)
+        printf(GREEN "%d/%d TESTS PASSED. FLAWLESS VICTORY!\n" RESET, passed, num_tests);
+    else
+        printf(RED "%d/%d TESTS PASSED. CHECK FAILURES ABOVE.\n" RESET, passed, num_tests);
 
-//     char *valid_maps[] = {
-//         "cub_files/valid/cornerless.cub",
-//         "cub_files/valid/garbage_padding.cub",
-//         "cub_files/valid/standard.cub",
-//         "cub_files/valid/ugly.cub",
-//         "cub_files/valid/unreachable_rooms.cub",
-//         NULL
-//     };
-
-//     printf("=== RUNNING INVALID MAP TESTS ===\n");
-//     test_maps(invalid_maps, 0);
-    
-//     printf("\n=== RUNNING VALID MAP TESTS ===\n");
-//     test_maps(valid_maps, 1);
-    
-//     return (0);
-// }
+    return (0);
+}
 
 // #include "../../inc/main.h"
 
