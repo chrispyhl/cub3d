@@ -6,7 +6,7 @@
 #    By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/10 12:12:17 by cpohl            ###   ########.fr        #
+#    Updated: 2026/04/10 12:43:29 by cpohl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = cub3D
 
 CC = cc
 CFLAGS = -Wextra -Wall -Werror -I $(INC_DIR)
+LDFLAGS = -L/usr/local/lib -lmlx42 -ldl -lglfw -pthread -lm
 RM = rm -f
 
 SRC_DIR = src/
@@ -39,7 +40,13 @@ PAR_FILES =	0_create_settings.c \
 			9_map_verification.c \
 			10_map_verification_util.c
 
-ENG_FILES =
+ENG_FILES = draw.c \
+			engine.c \
+			hooks.c \
+			player.c \
+			render_utils.c \
+			texture.c \
+			view.c
 
 MAIN_SRC = $(addprefix $(MAIN_DIR), $(MAIN_FILES))
 PAR_SRC = $(addprefix $(PAR_DIR), $(PAR_FILES))
@@ -57,7 +64,7 @@ OBJ = $(MAIN_OBJ) $(PAR_OBJ) $(ENG_OBJ)
 all: $(NAME)
 
 $(NAME): $(LIBFT_A) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
 # $(LDFLAGS)
 	@echo "Get chrispy."
 
