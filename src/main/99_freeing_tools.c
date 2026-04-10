@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   99_freeing_tools.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:48 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 17:12:58 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/10 12:07:57 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/defines.h"
 #include "../../inc/includes.h"
 #include "../../inc/settings.h"
+#include "../../inc/engine.h"
 
 void free_engine(t_engine *engine)
 {
