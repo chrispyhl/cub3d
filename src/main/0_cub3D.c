@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_cub3D.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:44 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:44:31 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/10 12:51:25 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,9 @@
 // }
 
 #include "../../inc/main.h"
+#include "../../inc/engine.h"
 
-int	main(int argc, char *argv[])
+int	main_print(int argc, char *argv[])
 {
 	t_settings	*settings;
 	int			i;
@@ -142,4 +143,25 @@ int	main(int argc, char *argv[])
 	printf("player y coord: %f\n", settings->player_info->player_y);
 	free_settings(settings);
 	return (0);
+}
+
+int	main(int argc, char *argv[])
+{
+	t_settings	*settings;
+	int			status;
+
+	if (argc != 2)
+	{
+		if (argc < 2)
+			ft_putstr_fd("No argument!\n", 1);
+		else
+			ft_putstr_fd("Too many arguments!\n", 1);
+		return (1);
+	}
+	settings = create_settings(argv[1]);
+	if (!settings)
+		return (1);
+	status = start_engine(settings);
+	free_settings(settings);
+	return (status);
 }
