@@ -6,11 +6,36 @@
 /*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 15:21:56 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/10 11:55:07 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/10 18:56:11 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
+
+static void	draw_background(t_engine *eng)
+{
+	int			x;
+	int			y;
+	uint32_t	ceil_col;
+	uint32_t	floor_col;
+
+	ceil_col = ((uint32_t)eng->settings->color_info->ceil_color << 8) | 0xFF;
+	floor_col = ((uint32_t)eng->settings->color_info->floor_color << 8) | 0xFF;
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (y < HEIGHT / 2)
+				mlx_put_pixel(eng->img, x, y, ceil_col);
+			else
+				mlx_put_pixel(eng->img, x, y, floor_col);
+			x++;
+		}
+		y++;
+	}
+}
 
 static void	prepare_ray(t_engine *eng, int x)
 {
@@ -86,10 +111,10 @@ void	draw_game(void *param)
 	t_engine	*eng;
 	int			x;
 	int			side;
-	double		r_dir[2];
 	double		perp_dist;
 
 	eng = (t_engine *)param;
+	draw_background(eng);
 	x = 0;
 	while (x < WIDTH)
 	{

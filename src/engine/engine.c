@@ -6,11 +6,33 @@
 /*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:46:39 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/07 16:25:05 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/10 13:23:11 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
+
+static int	init_mlx_scene(t_engine *engine)
+{
+	mlx_set_setting(MLX_MAXIMIZED, false);
+	engine->mlx = mlx_init(WIDTH, HEIGHT, "chr3d", false);
+	if (!engine->mlx)
+		return (1);
+	engine->img = mlx_new_image(engine->mlx, WIDTH, HEIGHT);
+	if (!engine->img)
+		return (mlx_terminate(engine->mlx), 1);
+	if (mlx_image_to_window(engine->mlx, engine->img, 0, 0) < 0)
+	{
+		mlx_delete_image(engine->mlx, engine->img);
+		return (mlx_terminate(engine->mlx), 1);
+	}
+	if (!load_tex(engine))
+	{
+		mlx_delete_image(engine->mlx, engine->img);
+		return (mlx_terminate(engine->mlx), 1);
+	}
+	return (0);
+}
 
 void	init_hooks(t_engine *engine)
 {
@@ -20,24 +42,13 @@ void	init_hooks(t_engine *engine)
 
 int	run_mlx(t_engine *engine)
 {
-	mlx_set_settings(MLX_MAXIMIZED, false);
-	engine->mlx = mlx_init(WIDTH, HEIGHT, "chr3d", false);
-	if (!engine->mlx)
-		return (1); // error
-	engine->img = mlx_new_image(engine->mlx, WIDTH, HEIGHT);
-	if (!engine->img)
-	{
-		mlx_terminate(engine->mlx);
-		return (1); // error
-	}
-	if (mlx_image_to_window(engine->mlx, engine->img, 0, 0) < 0)
-	{
-		mlx_delete_image(engine->mlx, engine->img);
-		mlx_terminate(engine->mlx);
-		return (1); // error
-	}
+	if (init_mlx_scene(engine))
+		return (1);
+	draw_game(engine);
+	engine->dirty = 0;
 	init_hooks(engine);
 	mlx_loop(engine->mlx);
+	free_tex(engine);
 	mlx_terminate(engine->mlx);
 	return (0);
 }
