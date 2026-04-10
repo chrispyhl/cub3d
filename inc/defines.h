@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 16:57:04 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 17:12:51 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/10 12:05:25 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #ifndef PI
 # define PI 3.1415926535
+# endif
 
 # define WIDTH 800
 # define HEIGHT 600
