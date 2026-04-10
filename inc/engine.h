@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:39:24 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/01 15:44:05 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/10 12:07:47 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,36 @@ typedef struct s_engine
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		stepX;
+	double		stepY;
+	double		r_dir_x;
+	double		r_dir_y;
+	int			mapX;
+	int			mapY;
 }				t_engine;
 
 // Functions
-int		start_engine(t_engine *engine);
+int			start_engine(t_settings *settings);
+t_engine	*init_engine(t_settings *settings);
 
-// void	draw_game();
+void		init_player(t_engine *engine);
+void		set_view_angle(t_engine *engine);
+
+void		draw_game(void *param);
+void		render_column(t_engine *eng, int x, int side, double perp_dist);
+
+void		pan_direction(t_engine *eng, mlx_key_data_t key);
+void		pan_view(t_engine *eng, mlx_key_data_t key);
 
 // MLX Stuff
-int		run_mlx(t_engine *engine);
-void	init_hooks(t_engine *engine);
+int			run_mlx(t_engine *engine);
+void		init_hooks(t_engine *engine);
+
+void		on_key_press(mlx_key_data_t k, void *param);
+void		redraw(void *param);
 
 #endif

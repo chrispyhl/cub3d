@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:31:38 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/01 15:33:20 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/07 17:12:34 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,8 @@ void	on_key_press(mlx_key_data_t k, void *param)
 	}
 	if (k.action != MLX_PRESS && k.action != MLX_REPEAT)
 		return ;
-	if (k.key == MLX_KEY_LEFT && (k.action == MLX_PRESS) 
-		|| k.key == MLX_KEY_RIGHT && (k.action == MLX_PRESS))
-		pan_direction(engine, k.key);
-	if (k.key == MLX_KEY_W || k.key == MLX_KEY_S || k.key == MLX_KEY_A
-		|| k.key == MLX_KEY_D)
-		pan_view(engine, k.key);
-	// else if (k.key == MLX_KEY_TAB)
-	// 	show_minimap(engine);
-	else
-		return ;
-	engine->dirty = 1;
+	pan_direction(engine, k);
+	pan_view(engine, k);
 }
 
 void	redraw(void *param)
@@ -44,7 +35,7 @@ void	redraw(void *param)
 	engine = (t_engine *)param;
 	if (engine->dirty)
 	{
-		engine->draw_game(engine);
+		draw_game(engine);
 		engine->dirty = 0;
 	}
 }
