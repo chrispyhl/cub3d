@@ -6,11 +6,25 @@
 /*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 16:59:33 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/07 17:11:53 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/10 13:41:21 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
+
+static int	is_walkable_tile(t_engine *eng, int x, int y)
+{
+	char	**map;
+
+	map = eng->settings->map_info->map;
+	if (y < 0 || y >= (int)eng->settings->map_info->y_height)
+		return (0);
+	if (x < 0 || !map[y] || x >= (int)ft_strlen(map[y]))
+		return (0);
+	if (map[y][x] == '1' || map[y][x] == ' ')
+		return (0);
+	return (1);
+}
 
 static void	rotate_vec(double *x, double *y, double angle)
 {
@@ -18,14 +32,14 @@ static void	rotate_vec(double *x, double *y, double angle)
 
 	old_x = *x;
 	*x = old_x * cos(angle) - *y * sin(angle);
-	*y = old_x * cos(angle) + *y * cos(angle);
+	*y = old_x * sin(angle) + *y * cos(angle);
 }
 
 void	pan_direction(t_engine *eng, mlx_key_data_t key)
 {
 	double	speed;
-	
-	speed = 0.05;
+
+	speed = 0.02;
 	if (key.key == MLX_KEY_LEFT)
 	{
 		rotate_vec(&eng->dir_x, &eng->dir_y, -speed);
@@ -43,12 +57,16 @@ static void	apply_move(t_engine *eng, double move_x, double move_y)
 {
 	int	next_x;
 	int	next_y;
-	
+	int	cur_x;
+	int	cur_y;
+
+	cur_x = (int)eng->pos_x;
+	cur_y = (int)eng->pos_y;
 	next_x = (int)(eng->pos_x + move_x);
 	next_y = (int)(eng->pos_y + move_y);
-	if (eng->settings->map_info->map[(int)eng->pos_y][next_x] != '1')
+	if (is_walkable_tile(eng, next_x, cur_y))
 		eng->pos_x += move_x;
-	if (eng->settings->map_info->map[next_y][(int)eng->pos_x] != '1')
+	if (is_walkable_tile(eng, cur_x, next_y))
 		eng->pos_y += move_y;
 }
 
@@ -56,7 +74,7 @@ void	pan_view(t_engine *eng, mlx_key_data_t key)
 {
 	double	s;
 
-	s = 0.1;
+	s = 0.03;
 	if (key.key == MLX_KEY_W)
 		apply_move(eng, eng->dir_x * s, eng->dir_y * s);
 	if (key.key == MLX_KEY_S)
