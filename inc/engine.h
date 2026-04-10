@@ -6,7 +6,7 @@
 /*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:39:24 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/10 12:07:47 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/10 18:48:05 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ typedef struct s_engine
 {
 	mlx_t		*mlx;
 	mlx_image_t	*img;
+	mlx_texture_t	*no_tex_img;
+	mlx_texture_t	*so_tex_img;
+	mlx_texture_t	*we_tex_img;
+	mlx_texture_t	*ea_tex_img;
 	t_settings	*settings;
 	int			dirty;
 	double		pos_x;
@@ -38,6 +42,9 @@ typedef struct s_engine
 	double		r_dir_y;
 	int			mapX;
 	int			mapY;
+	int			line_h;
+	int			draw_start;
+	int			draw_end;
 }				t_engine;
 
 // Functions
@@ -46,6 +53,9 @@ t_engine	*init_engine(t_settings *settings);
 
 void		init_player(t_engine *engine);
 void		set_view_angle(t_engine *engine);
+
+int			load_tex(t_engine *eng);
+void		free_tex(t_engine *eng);
 
 void		draw_game(void *param);
 void		render_column(t_engine *eng, int x, int side, double perp_dist);
