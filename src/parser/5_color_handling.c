@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   5_color_handling.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:17 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 14:43:31 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/03 16:16:19 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
+
+static int	return_error_message(int code)
+{
+	if (code == 0)
+		ft_putstr_fd("ERROR:\nMultiple floor color codes.\n", 1);
+	else if (code == 1)
+		ft_putstr_fd("ERROR:\nMultiple ceiling color codes.\n", 1);
+	else if (code == 2)
+		ft_putstr_fd("ERROR:\nCouldn't generate color code for floor.\n", 1);
+	else if (code == 3)
+		ft_putstr_fd("ERROR:\nCouldn't generate color code for ceiling.\n", 1);
+	else if (code > 3)
+	{
+		if (code == 4)
+			ft_putstr_fd("ERROR:\nColor code contains invalid character.\n", 1);
+		else if (code == 5)
+			ft_putstr_fd("ERROR:\nColor code out of range (0–255).\n", 1);
+		else if (code == 6)
+			ft_putstr_fd("ERROR:\nWrong number of color code constituents.\n",
+				1);
+		else if (code == 7)
+			ft_putstr_fd("ERROR:\nMalloc failed during color code creation.\n",
+				1);
+		return (-1);
+	}
+	return (0);
+}
 
 static int	generate_color_code(char **values)
 {
@@ -26,8 +53,8 @@ static int	generate_color_code(char **values)
 		j = 0;
 		while (values[i][j])
 		{
-			if (ft_isdigit(values[i][j]) != 1)
-				return (-1);
+			if (ft_isdigit(values[i][j]) != 1 && ft_atoi(values[i]) >= 0)
+				return (return_error_message(4));
 			j++;
 		}
 		i++;
@@ -37,7 +64,7 @@ static int	generate_color_code(char **values)
 	blue = ft_atoi(values[2]);
 	if (red < 0 || red > 255 || green < 0 || green > 255 || blue < 0
 		|| blue > 255)
-		return (-1);
+		return (return_error_message(5));
 	return (red << 16 | green << 8 | blue);
 }
 
@@ -49,12 +76,12 @@ static int	convert_color_info(char *code_str)
 
 	values = ft_split(code_str, ',');
 	if (!values)
-		return (-1);
+		return (return_error_message(7));
 	i = 0;
 	while (values[i])
 		i++;
 	if (i != 3)
-		code = -1;
+		code = return_error_message(6);
 	else
 		code = generate_color_code(values);
 	free_array(values);
@@ -67,15 +94,9 @@ int	verify_color_info(t_settings *settings)
 
 	valid_flag = 1;
 	if (settings->color_info->floor_color == -1)
-	{
-		ft_putstr_fd("ERROR:\nCouldn't generate color code for floor.\n", 1);
-		valid_flag = 0;
-	}
+		valid_flag = return_error_message(2);
 	if (settings->color_info->ceil_color == -1)
-	{
-		ft_putstr_fd("ERROR:\nCouldn't generate color code for ceiling.\n", 1);
-		valid_flag = 0;
-	}
+		valid_flag = return_error_message(3);
 	return (valid_flag);
 }
 
@@ -84,19 +105,13 @@ int	add_color_info(t_settings *settings, char *line)
 	if (ft_strncmp(line, "F ", 2) == 0)
 	{
 		if (settings->color_info->floor_color != -1)
-		{
-			ft_putstr_fd("ERROR:\nMultiple floor color codes.\n", 1);
-			return (0);
-		}
+			return (return_error_message(0));
 		settings->color_info->floor_color = convert_color_info(line + 2);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
 		if (settings->color_info->ceil_color != -1)
-		{
-			ft_putstr_fd("ERROR:\nMultiple ceiling color codes.\n", 1);
-			return (0);
-		}
+			return (return_error_message(1));
 		settings->color_info->ceil_color = convert_color_info(line + 2);
 	}
 	return (1);

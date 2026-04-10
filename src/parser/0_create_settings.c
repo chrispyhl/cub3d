@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_create_settings.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 17:05:25 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 15:48:10 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/03 17:23:22 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ static t_settings	*create_settings_var(char *arg)
 t_settings	*create_settings(char *arg)
 {
 	t_settings	*settings;
+	int			tex_check;
+	int			color_check;
+	int			map_check;
 
 	settings = create_settings_var(arg);
 	if (!settings)
@@ -71,8 +74,10 @@ t_settings	*create_settings(char *arg)
 		free_settings(settings);
 		return (NULL);
 	}
-	if (verify_tex_info(settings) != 1 || verify_color_info(settings) != 1
-		|| verify_map_info(settings) != 1)
+	tex_check = verify_tex_info(settings);
+	color_check = verify_color_info(settings);
+	map_check = verify_map_info(settings);
+	if (tex_check != 1 || color_check != 1 || map_check != 1)
 	{
 		free_settings(settings);
 		return (NULL);

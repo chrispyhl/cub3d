@@ -3,61 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   6_map_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:23 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 11:19:21 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/03 17:23:27 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/parser.h"
-
-static size_t	find_min_indent(t_settings *settings)
-{
-	size_t	min_indent;
-	size_t	spaces;
-	char	**map;
-	int		i;
-
-	min_indent = SIZE_MAX;
-	map = settings->map_info->map;
-	i = 0;
-	while (map[i])
-	{
-		spaces = 0;
-		while (map[i][spaces] == ' ')
-			spaces++;
-		if (spaces < min_indent)
-			min_indent = spaces;
-		i++;
-	}
-	return (min_indent);
-}
-
-static int	left_align_map(t_settings *settings)
-{
-	size_t	min_indent;
-	int		i;
-	char	**map;
-	char	*aligned_line;
-
-	min_indent = find_min_indent(settings);
-	if (min_indent == 0)
-		return (1);
-	i = 0;
-	map = settings->map_info->map;
-	while (map[i])
-	{
-		aligned_line = ft_substr(map[i], (unsigned int)min_indent,
-				ft_strlen(map[i]) - min_indent);
-		if (!aligned_line)
-			return (0);
-		free(map[i]);
-		map[i] = aligned_line;
-		i++;
-	}
-	return (1);
-}
 
 static void	strip_newlines_spaces(t_settings *settings)
 {
@@ -98,6 +51,17 @@ static unsigned int	get_map_width(t_settings *settings)
 	return (width);
 }
 
+static int	format_map(t_settings *settings)
+{
+	if (left_align_map(settings) != 1)
+		return (0);
+	strip_newlines_spaces(settings);
+	settings->map_info->x_width = get_map_width(settings);
+	if (add_padding(settings) != 1)
+		return (0);
+	return (1);
+}
+
 int	add_map_info(t_settings *settings, t_map_list *map_list)
 {
 	char		**map_array;
@@ -105,7 +69,6 @@ int	add_map_info(t_settings *settings, t_map_list *map_list)
 	t_map_node	*current;
 
 	settings->map_info->y_height = map_list->size;
-	// + 1 for NULL terminator at end of array
 	map_array = ft_calloc(settings->map_info->y_height + 1, sizeof(char *));
 	if (!map_array)
 		return (0);
@@ -121,9 +84,5 @@ int	add_map_info(t_settings *settings, t_map_list *map_list)
 		current = current->next;
 	}
 	settings->map_info->map[i] = NULL;
-	if (left_align_map(settings) != 1)
-		return (0);
-	strip_newlines_spaces(settings);
-	settings->map_info->x_width = get_map_width(settings);
-	return (1);
+	return (format_map(settings));
 }

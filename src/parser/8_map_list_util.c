@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   7_map_list_util.c                                  :+:      :+:    :+:   */
+/*   8_map_list_util.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:27 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 10:45:45 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/03 18:09:17 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_map_list	*populate_map_list(void)
 	map_list->last = NULL;
 	map_list->size = 0;
 	map_list->map_parsed = 0;
-	return(map_list);
+	return (map_list);
 }
 
 static t_map_node	*create_map_node(char *line)
