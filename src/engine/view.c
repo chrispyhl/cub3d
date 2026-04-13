@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 16:59:33 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/10 13:41:21 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 16:33:40 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	pan_direction(t_engine *eng, mlx_key_data_t key)
 {
 	double	speed;
 
-	speed = 0.02;
+	speed = 0.04;
 	if (key.key == MLX_KEY_LEFT)
 	{
 		rotate_vec(&eng->dir_x, &eng->dir_y, -speed);
@@ -64,17 +64,18 @@ static void	apply_move(t_engine *eng, double move_x, double move_y)
 	cur_y = (int)eng->pos_y;
 	next_x = (int)(eng->pos_x + move_x);
 	next_y = (int)(eng->pos_y + move_y);
-	if (is_walkable_tile(eng, next_x, cur_y))
+	if (is_walkable_tile(eng, (int)(eng->pos_x + move_x), (int)(eng->pos_y + move_y)))
+	{
 		eng->pos_x += move_x;
-	if (is_walkable_tile(eng, cur_x, next_y))
 		eng->pos_y += move_y;
+	}
 }
 
 void	pan_view(t_engine *eng, mlx_key_data_t key)
 {
 	double	s;
 
-	s = 0.03;
+	s = 0.05;
 	if (key.key == MLX_KEY_W)
 		apply_move(eng, eng->dir_x * s, eng->dir_y * s);
 	if (key.key == MLX_KEY_S)
