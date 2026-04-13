@@ -65,3 +65,10 @@ obj/parser/7_map_handling_util.o
 obj/parser/8_map_list_util.o
 obj/parser/9_map_verification.o
 obj/parser/10_map_verification_util.o
+obj/engine/draw.o
+obj/engine/engine.o
+obj/engine/hooks.o
+obj/engine/player.o
+obj/engine/render_utils.o
+obj/engine/texture.o
+obj/engine/view.o
