@@ -6,7 +6,7 @@
 #    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/13 16:46:44 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/13 17:03:00 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,28 +28,28 @@ OBJ_DIR = obj/
 MLX_DIR = ./MLX42
 MLX_LIB = $(MLX_DIR)/build/libmlx42.a
 
-MAIN_FILES =	0_cub3D.c \
-				99_freeing_tools.c
+MAIN_FILES =    0_cub3D.c \
+                99_freeing_tools.c
 
-PAR_FILES =	0_create_settings.c \
-			1_parsing.c \
-			2_filepath_handling.c \
-			3_cub_sanitizer.c \
-			4_texture_handling.c \
-			5_color_handling.c \
-			6_map_handling.c \
-			7_map_handling_util.c \
-			8_map_list_util.c \
-			9_map_verification.c \
-			10_map_verification_util.c
+PAR_FILES = 0_create_settings.c \
+            1_parsing.c \
+            2_filepath_handling.c \
+            3_cub_sanitizer.c \
+            4_texture_handling.c \
+            5_color_handling.c \
+            6_map_handling.c \
+            7_map_handling_util.c \
+            8_map_list_util.c \
+            9_map_verification.c \
+            10_map_verification_util.c
 
 ENG_FILES = draw.c \
-			engine.c \
-			hooks.c \
-			player.c \
-			render_utils.c \
-			texture.c \
-			view.c
+            engine.c \
+            hooks.c \
+            player.c \
+            render_utils.c \
+            texture.c \
+            view.c
 
 MAIN_SRC = $(addprefix $(MAIN_DIR), $(MAIN_FILES))
 PAR_SRC = $(addprefix $(PAR_DIR), $(PAR_FILES))
@@ -58,8 +58,8 @@ ENG_SRC = $(addprefix $(ENG_DIR), $(ENG_FILES))
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
 MAIN_OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(MAIN_SRC))
-PAR_OBJ	= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(PAR_SRC))
-ENG_OBJ	= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENG_SRC))
+PAR_OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(PAR_SRC))
+ENG_OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENG_SRC))
 # patsubst replaces src/ with obj/ for every file in list
 # not a wildcard since it takes pre-typed file names from SRC variables
 OBJ = $(MAIN_OBJ) $(PAR_OBJ) $(ENG_OBJ)
@@ -76,7 +76,11 @@ $(LIBFT_A):
 $(MLX_LIB):
 	@if [ ! -d "$(MLX_DIR)/include" ]; then \
 		echo "MLX42 folder missing. Fetching it..."; \
-		git submodule update --init --recursive || (echo "ERROR\nGit failed to fetch MLX42. Exiting..." && exit 1); \
+		git submodule update --init --recursive; \
+		if [ ! -d "$(MLX_DIR)/include" ]; then \
+			echo "ERROR: Git failed to fetch MLX42. Exiting..."; \
+			exit 1; \
+		fi; \
 	fi
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
