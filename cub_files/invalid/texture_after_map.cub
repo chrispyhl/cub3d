@@ -1,6 +1,6 @@
-NO ./textures/NO.jpg
-SO ./textures/SO.jpg
-WE ./textures/WE.jpg
+NO ./textures/NO.png
+SO ./textures/SO.png
+WE ./textures/WE.png
 F 220,100,0
 C 225,30,0
 
@@ -8,4 +8,4 @@ C 225,30,0
 101
 111
 
-EA ./textures/EA.jpg
+EA ./textures/EA.png

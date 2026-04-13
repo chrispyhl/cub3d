@@ -1,9 +1,9 @@
-NO ./textures/NO.jpg
+NO ./textures/NO.png
    
-SO ./textures/SO.jpg
-WE ./textures/WE.jpg
+SO ./textures/SO.png
+WE ./textures/WE.png
 
-EA ./textures/EA.jpg
+EA ./textures/EA.png
 
 
 F 220,100,0

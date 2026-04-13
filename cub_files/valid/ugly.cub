@@ -1,13 +1,13 @@
 F  220,,,,,100,0
 
 
-WE ./textures/WE.jpg
+WE ./textures/WE.png
 
  C 225,30,,0
- NO ./textures/NO.jpg
-EA      ./textures/EA.jpg
+ NO ./textures/NO.png
+EA      ./textures/EA.png
 
-  SO ./textures/SO.jpg
+  SO ./textures/SO.png
 
         111111111111     
         100000000001   

@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+         #
+#    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/10 12:43:29 by cpohl            ###   ########.fr        #
+#    Updated: 2026/04/13 15:47:45 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 CC = cc
-CFLAGS = -Wextra -Wall -Werror -I $(INC_DIR)
-LDFLAGS = -L/usr/local/lib -lmlx42 -ldl -lglfw -pthread -lm
+CFLAGS = -Wextra -Wall -Werror -I $(INC_DIR) -I $(MLX_DIR)/include
+LDFLAGS = $(MLX_LIB) -ldl -lglfw -pthread -lm
 RM = rm -f
 
 SRC_DIR = src/
@@ -24,6 +24,9 @@ ENG_DIR = $(SRC_DIR)/engine/
 INC_DIR = inc/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
+
+MLX_DIR = ./MLX42
+MLX_LIB = $(MLX_DIR)/build/libmlx42.a
 
 MAIN_FILES =	0_cub3D.c \
 				99_freeing_tools.c
@@ -63,13 +66,15 @@ OBJ = $(MAIN_OBJ) $(PAR_OBJ) $(ENG_OBJ)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT_A) $(OBJ)
+$(NAME): $(MLX_LIB) $(LIBFT_A) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
-# $(LDFLAGS)
 	@echo "Get chrispy."
 
 $(LIBFT_A):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
+
+$(MLX_LIB):
+	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
 $(OBJ_DIR)/%.o: src/%.c
 	@mkdir -p $(dir $@)
