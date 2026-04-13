@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:31:38 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/10 18:48:40 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 17:09:24 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ void	on_key_press(mlx_key_data_t k, void *param)
 	{
 		mlx_close_window(engine->mlx);
 		return ;
+	}
+	if (k.key == MLX_KEY_TAB && k.action == MLX_PRESS)
+	{
+		if (engine->minimap_img->enabled)
+			engine->minimap_img->enabled = false;
+		else
+			engine->minimap_img->enabled = true;
 	}
 }
 
