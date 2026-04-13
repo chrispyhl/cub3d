@@ -6,7 +6,7 @@
 #    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/13 15:47:45 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/13 16:19:02 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,10 @@ $(LIBFT_A):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 
 $(MLX_LIB):
+	@if [ ! -d "$(MLX_DIR)/include" ]; then \
+		echo "MLX42 submodule missing. Initializing..."; \
+		git submodule update --init --recursive; \
+	fi
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
 $(OBJ_DIR)/%.o: src/%.c
