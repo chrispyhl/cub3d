@@ -6,7 +6,7 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:39:24 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 17:14:15 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 17:28:57 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void		free_tex(t_engine *eng);
 
 void		draw_game(void *param);
 void		render_column(t_engine *eng, int x, int side, double perp_dist);
+
+void		draw_minimap(t_engine *eng);
 
 void		pan_direction(t_engine *eng, mlx_key_data_t key);
 void		pan_view(t_engine *eng, mlx_key_data_t key);

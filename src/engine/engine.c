@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:46:39 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/10 13:23:11 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 17:27:28 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ static int	init_mlx_scene(t_engine *engine)
 		mlx_delete_image(engine->mlx, engine->img);
 		return (mlx_terminate(engine->mlx), 1);
 	}
+	engine->minimap_img = mlx_new_image(engine->mlx, 200, 200);
+	if (!engine->minimap_img)
+		return (mlx_terminate(engine->mlx), 1);
+	mlx_image_to_window(engine->mlx, engine->minimap_img, WIDTH - 210, 10);
+	engine->minimap_img->enabled = false;
 	if (!load_tex(engine))
 	{
 		mlx_delete_image(engine->mlx, engine->img);

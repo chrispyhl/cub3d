@@ -6,7 +6,7 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 16:59:33 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 16:33:40 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 18:06:49 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,17 @@ static void	apply_move(t_engine *eng, double move_x, double move_y)
 	cur_y = (int)eng->pos_y;
 	next_x = (int)(eng->pos_x + move_x);
 	next_y = (int)(eng->pos_y + move_y);
-	if (is_walkable_tile(eng, (int)(eng->pos_x + move_x), (int)(eng->pos_y + move_y)))
+	if (BONUS == 0 && is_walkable_tile(eng, (int)(eng->pos_x + move_x), (int)(eng->pos_y + move_y)))
 	{
 		eng->pos_x += move_x;
 		eng->pos_y += move_y;
+	}
+	else if (BONUS == 1)
+	{
+		if (is_walkable_tile(eng, next_x, cur_y))
+			eng->pos_x += move_x;
+		if (is_walkable_tile(eng, cur_x, next_y))
+			eng->pos_y += move_y;
 	}
 }
 

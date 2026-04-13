@@ -6,7 +6,7 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:31:38 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 17:09:24 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 17:32:16 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	redraw(void *param)
 	if (engine->dirty)
 	{
 		draw_game(engine);
+		if (engine->minimap_img && engine->minimap_img->enabled)
+			draw_minimap(engine);
 		engine->dirty = 0;
 	}
 }
