@@ -6,7 +6,7 @@
 #    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/13 17:03:00 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/13 18:03:45 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC_DIR = src/
 MAIN_DIR = $(SRC_DIR)/main/
 PAR_DIR = $(SRC_DIR)/parser/
 ENG_DIR = $(SRC_DIR)/engine/
+ENG_DIR_B = $(SRC_DIR)/engine_bonus
 INC_DIR = inc/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
@@ -28,47 +29,55 @@ OBJ_DIR = obj/
 MLX_DIR = ./MLX42
 MLX_LIB = $(MLX_DIR)/build/libmlx42.a
 
-MAIN_FILES =    0_cub3D.c \
-                99_freeing_tools.c
+MAIN_FILES =	0_cub3D.c \
+				99_freeing_tools.c
 
-PAR_FILES = 0_create_settings.c \
-            1_parsing.c \
-            2_filepath_handling.c \
-            3_cub_sanitizer.c \
-            4_texture_handling.c \
-            5_color_handling.c \
-            6_map_handling.c \
-            7_map_handling_util.c \
-            8_map_list_util.c \
-            9_map_verification.c \
-            10_map_verification_util.c
+PAR_FILES =	0_create_settings.c \
+			1_parsing.c \
+			2_filepath_handling.c \
+			3_cub_sanitizer.c \
+			4_texture_handling.c \
+			5_color_handling.c \
+			6_map_handling.c \
+			7_map_handling_util.c \
+			8_map_list_util.c \
+			9_map_verification.c \
+			10_map_verification_util.c
 
-ENG_FILES = draw.c \
-            engine.c \
-            hooks.c \
-            player.c \
-            render_utils.c \
-            texture.c \
-            view.c
+ENG_FILES =	draw.c \
+			engine.c \
+			hooks.c \
+			player.c \
+			render_utils.c \
+			texture.c \
+			view.c
+ENG_FILES_B =	\
 
 MAIN_SRC = $(addprefix $(MAIN_DIR), $(MAIN_FILES))
 PAR_SRC = $(addprefix $(PAR_DIR), $(PAR_FILES))
 ENG_SRC = $(addprefix $(ENG_DIR), $(ENG_FILES))
+ENG_SRC_B = $(addprefix $(ENG_DIR_B), $(ENG_FILES_B))
 
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
 MAIN_OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(MAIN_SRC))
 PAR_OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(PAR_SRC))
 ENG_OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENG_SRC))
+ENG_OBJ_B = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ENG_SRC_B))
 # patsubst replaces src/ with obj/ for every file in list
 # not a wildcard since it takes pre-typed file names from SRC variables
 OBJ = $(MAIN_OBJ) $(PAR_OBJ) $(ENG_OBJ)
+OBJ_B = $(MAIN_OBJ) $(PAR_OBJ) $(ENG_OBJ_B)
 
 all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(LIBFT_A) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME) -D BONUS=0
 	@echo "Get chrispy."
+
+bonus: $(MLX_LIB) $(LIBFT_A) $(OBJ_B)
+	@$(CC) $(CFLAGS_B) $(OBJ_B) $(LIBFT_A) $(LDFLAGS) -o $(NAME) -D BONUS=1
+	@echo "Get extra chrispy."
 
 $(LIBFT_A):
 	@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
