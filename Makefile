@@ -6,7 +6,7 @@
 #    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/13 16:19:02 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/13 16:46:44 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,8 @@ $(LIBFT_A):
 
 $(MLX_LIB):
 	@if [ ! -d "$(MLX_DIR)/include" ]; then \
-		echo "MLX42 submodule missing. Initializing..."; \
-		git submodule update --init --recursive; \
+		echo "MLX42 folder missing. Fetching it..."; \
+		git submodule update --init --recursive || (echo "ERROR\nGit failed to fetch MLX42. Exiting..." && exit 1); \
 	fi
 	@cmake $(MLX_DIR) -B $(MLX_DIR)/build && make -C $(MLX_DIR)/build -j4
 
