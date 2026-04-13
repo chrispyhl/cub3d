@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 15:21:56 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/10 18:56:11 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 17:14:15 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,39 +44,39 @@ static void	prepare_ray(t_engine *eng, int x)
 	camera_x = 2 * (double)x / (double)WIDTH - 1;
 	eng->r_dir_x = eng->dir_x + eng->plane_x * camera_x;
 	eng->r_dir_y = eng->dir_y + eng->plane_y * camera_x;
-	eng->mapX = (int)eng->pos_x;
-	eng->mapY = (int)eng->pos_y;
+	eng->map_x = (int)eng->pos_x;
+	eng->map_y = (int)eng->pos_y;
 	if (eng->r_dir_x == 0)
-		eng->deltaDistX = 1e30;
+		eng->delta_dist_x = 1e30;
 	else
-		eng->deltaDistX = fabs(1 / eng->r_dir_x);
+		eng->delta_dist_x = fabs(1 / eng->r_dir_x);
 	if (eng->r_dir_y == 0)
-		eng->deltaDistY = 1e30;
+		eng->delta_dist_y = 1e30;
 	else
-		eng->deltaDistY = fabs(1 / eng->r_dir_y);
+		eng->delta_dist_y = fabs(1 / eng->r_dir_y);
 }
 
 static void	set_dda_step(t_engine *eng)
 {
 	if (eng->r_dir_x < 0)
 	{
-		eng->stepX = -1;
-		eng->sideDistX = (eng->pos_x - eng->mapX) * eng->deltaDistX;
+		eng->step_x = -1;
+		eng->side_dist_x = (eng->pos_x - eng->map_x) * eng->delta_dist_x;
 	}
 	else
 	{
-		eng->stepX = 1;
-		eng->sideDistX = (eng->mapX + 1.0 - eng->pos_x) * eng->deltaDistX;
+		eng->step_x = 1;
+		eng->side_dist_x = (eng->map_x + 1.0 - eng->pos_x) * eng->delta_dist_x;
 	}
 	if (eng->r_dir_y < 0)
 	{
-		eng->stepY = -1;
-		eng->sideDistY = (eng->pos_y - eng->mapY) * eng->deltaDistY;
+		eng->step_y = -1;
+		eng->side_dist_y = (eng->pos_y - eng->map_y) * eng->delta_dist_y;
 	}
 	else
 	{
-		eng->stepY = 1;
-		eng->sideDistY = (eng->mapY + 1.0 - eng->pos_y) * eng->deltaDistY;
+		eng->step_y = 1;
+		eng->side_dist_y = (eng->map_y + 1.0 - eng->pos_y) * eng->delta_dist_y;
 	}
 }
 
@@ -88,19 +88,19 @@ static int	perform_dda(t_engine *eng)
 	hit = 0;
 	while (hit == 0)
 	{
-		if (eng->sideDistX < eng->sideDistY)
+		if (eng->side_dist_x < eng->side_dist_y)
 		{
-			eng->sideDistX += eng->deltaDistX;
-			eng->mapX += (int)eng->stepX;
+			eng->side_dist_x += eng->delta_dist_x;
+			eng->map_x += (int)eng->step_x;
 			side = 0;
 		}
 		else
 		{
-			eng->sideDistY += eng->deltaDistY;
-			eng->mapY += (int)eng->stepY;
+			eng->side_dist_y += eng->delta_dist_y;
+			eng->map_y += (int)eng->step_y;
 			side = 1;
 		}
-		if (eng->settings->map_info->map[eng->mapY][eng->mapX] == '1')
+		if (eng->settings->map_info->map[eng->map_y][eng->map_x] == '1')
 			hit = 1;
 	}
 	return (side);
@@ -122,9 +122,9 @@ void	draw_game(void *param)
 		set_dda_step(eng);
 		side = perform_dda(eng);
 		if (side == 0)
-			perp_dist = (eng->sideDistX - eng->deltaDistX);
+			perp_dist = (eng->side_dist_x - eng->delta_dist_x);
 		else
-			perp_dist = (eng->sideDistY - eng->deltaDistY);
+			perp_dist = (eng->side_dist_y - eng->delta_dist_y);
 		render_column(eng, x, side, perp_dist);
 		x++;
 	}

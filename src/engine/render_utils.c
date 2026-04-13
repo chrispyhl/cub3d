@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/10 11:54:41 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/10 18:47:02 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/13 17:13:58 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ static mlx_texture_t	*get_wall_texture(t_engine *eng, int side)
 {
 	if (side == 0)
 	{
-		if (eng->stepX > 0)
+		if (eng->step_x > 0)
 			return (eng->ea_tex_img);
 		return (eng->we_tex_img);
 	}
-	if (eng->stepY > 0)
+	if (eng->step_y > 0)
 		return (eng->so_tex_img);
 	return (eng->no_tex_img);
 }

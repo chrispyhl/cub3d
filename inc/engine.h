@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:39:24 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 15:39:10 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/13 17:14:15 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,35 @@
 
 typedef struct s_engine
 {
-	mlx_t		*mlx;
-	mlx_image_t	*img;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_image_t		*minimap_img;
 	mlx_texture_t	*no_tex_img;
 	mlx_texture_t	*so_tex_img;
 	mlx_texture_t	*we_tex_img;
 	mlx_texture_t	*ea_tex_img;
-	t_settings	*settings;
-	int			dirty;
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		stepX;
-	double		stepY;
-	double		r_dir_x;
-	double		r_dir_y;
-	int			mapX;
-	int			mapY;
-	int			line_h;
-	int			draw_start;
-	int			draw_end;
-}				t_engine;
+	t_settings		*settings;
+	int				dirty;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	double			side_dist_x;
+	double			side_dist_y;
+	double			delta_dist_x;
+	double			delta_dist_y;
+	double			step_x;
+	double			step_y;
+	double			r_dir_x;
+	double			r_dir_y;
+	int				map_x;
+	int				map_y;
+	int				line_h;
+	int				draw_start;
+	int				draw_end;
+}					t_engine;
 
 // Functions
 int			start_engine(t_settings *settings);
