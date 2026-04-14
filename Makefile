@@ -6,7 +6,7 @@
 #    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/14 17:46:48 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/14 18:06:23 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,9 +64,11 @@ all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(LIBFT_A) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
 	@echo "Get chrispy."
 
 bonus: $(MLX_LIB) $(LIBFT_A) $(OBJ_B)
+	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
 	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
 	@echo "Get extra chrispy."
 
