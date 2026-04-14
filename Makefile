@@ -6,7 +6,7 @@
 #    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/13 18:03:45 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/14 15:13:17 by craabe           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC_DIR = src/
 MAIN_DIR = $(SRC_DIR)/main/
 PAR_DIR = $(SRC_DIR)/parser/
 ENG_DIR = $(SRC_DIR)/engine/
-ENG_DIR_B = $(SRC_DIR)/engine_bonus
+ENG_DIR_B = $(SRC_DIR)/engine_bonus/
 INC_DIR = inc/
 LIBFT_DIR = libft/
 OBJ_DIR = obj/
@@ -51,7 +51,13 @@ ENG_FILES =	draw.c \
 			render_utils.c \
 			texture.c \
 			view.c
-ENG_FILES_B =	\
+ENG_FILES_B = 	draw_bonus.c \
+				engine_bonus.c \
+				hooks_bonus.c \
+				player_bonus.c \
+				render_utils_bonus.c \
+				texture_bonus.c \
+				view_bonus.c
 
 MAIN_SRC = $(addprefix $(MAIN_DIR), $(MAIN_FILES))
 PAR_SRC = $(addprefix $(PAR_DIR), $(PAR_FILES))
