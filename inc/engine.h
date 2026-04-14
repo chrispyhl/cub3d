@@ -6,15 +6,26 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:39:24 by cpohl             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2026/04/13 17:28:57 by cpohl            ###   ########.fr       */
+=======
+/*   Updated: 2026/04/13 18:11:15 by cpohl            ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENGINE_H
 # define ENGINE_H
 
-# include "main.h"
 # include "../MLX42/include/MLX42/MLX42.h"
+# include "main.h"
+
+# ifndef WIDTH
+#  define WIDTH 800
+# endif
+# ifndef HEIGHT
+#  define HEIGHT 600
+# endif
 
 typedef struct s_engine
 {
@@ -49,28 +60,27 @@ typedef struct s_engine
 }					t_engine;
 
 // Functions
-int			start_engine(t_settings *settings);
-t_engine	*init_engine(t_settings *settings);
+int					start_engine(t_settings *settings);
+t_engine			*init_engine(t_settings *settings);
 
-void		init_player(t_engine *engine);
-void		set_view_angle(t_engine *engine);
+void				init_player(t_engine *engine);
+void				set_view_angle(t_engine *engine);
 
-int			load_tex(t_engine *eng);
-void		free_tex(t_engine *eng);
+int					load_tex(t_engine *eng);
+void				free_tex(t_engine *eng);
 
-void		draw_game(void *param);
-void		render_column(t_engine *eng, int x, int side, double perp_dist);
+void				draw_game(void *param);
+void				render_column(t_engine *eng, int x, int side,
+						double perp_dist);
 
-void		draw_minimap(t_engine *eng);
-
-void		pan_direction(t_engine *eng, mlx_key_data_t key);
-void		pan_view(t_engine *eng, mlx_key_data_t key);
+void				pan_direction(t_engine *eng, mlx_key_data_t key);
+void				pan_view(t_engine *eng, mlx_key_data_t key);
 
 // MLX Stuff
-int			run_mlx(t_engine *engine);
-void		init_hooks(t_engine *engine);
+int					run_mlx(t_engine *engine);
+void				init_hooks(t_engine *engine);
 
-void		on_key_press(mlx_key_data_t k, void *param);
-void		redraw(void *param);
+void				on_key_press(mlx_key_data_t k, void *param);
+void				redraw(void *param);
 
 #endif

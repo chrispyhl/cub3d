@@ -1,9 +1,9 @@
-F  220,,,,,100,0
+F 85,255,85
 
 
 WE ./textures/WE.png
 
- C 225,30,,0
+ C 85,85,255
  NO ./textures/NO.png
 EA      ./textures/EA.png
 
