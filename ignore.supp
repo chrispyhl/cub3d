@@ -128,3 +128,15 @@
    fun:XrmGetStringDatabase
    ...
 }
+
+{
+   driver_anonymous_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect
+   fun:calloc
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+   obj:*
+}
