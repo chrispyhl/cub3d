@@ -6,7 +6,7 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 14:31:38 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 17:32:16 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/14 15:21:17 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,6 @@ void	on_key_press(mlx_key_data_t k, void *param)
 		mlx_close_window(engine->mlx);
 		return ;
 	}
-	if (k.key == MLX_KEY_TAB && k.action == MLX_PRESS)
-	{
-		if (engine->minimap_img->enabled)
-			engine->minimap_img->enabled = false;
-		else
-			engine->minimap_img->enabled = true;
-	}
 }
 
 void	redraw(void *param)
@@ -72,8 +65,6 @@ void	redraw(void *param)
 	if (engine->dirty)
 	{
 		draw_game(engine);
-		if (engine->minimap_img && engine->minimap_img->enabled)
-			draw_minimap(engine);
 		engine->dirty = 0;
 	}
 }

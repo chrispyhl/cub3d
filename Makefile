@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: craabe <craabe@student.42.fr>              +#+  +:+       +#+         #
+#    By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/14 15:13:17 by craabe           ###   ########.fr        #
+#    Updated: 2026/04/14 15:25:49 by cpohl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,8 @@ ENG_FILES_B = 	draw_bonus.c \
 				player_bonus.c \
 				render_utils_bonus.c \
 				texture_bonus.c \
-				view_bonus.c
+				view_bonus.c \
+				minimap_bonus.c
 
 MAIN_SRC = $(addprefix $(MAIN_DIR), $(MAIN_FILES))
 PAR_SRC = $(addprefix $(PAR_DIR), $(PAR_FILES))
@@ -82,7 +83,7 @@ $(NAME): $(MLX_LIB) $(LIBFT_A) $(OBJ)
 	@echo "Get chrispy."
 
 bonus: $(MLX_LIB) $(LIBFT_A) $(OBJ_B)
-	@$(CC) $(CFLAGS_B) $(OBJ_B) $(LIBFT_A) $(LDFLAGS) -o $(NAME) -D BONUS=1
+	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT_A) $(LDFLAGS) -o $(NAME) -D BONUS=1
 	@echo "Get extra chrispy."
 
 $(LIBFT_A):

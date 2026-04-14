@@ -6,7 +6,7 @@
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 16:59:33 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 18:06:49 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/14 15:23:01 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	pan_direction(t_engine *eng, mlx_key_data_t key)
 {
 	double	speed;
 
-	speed = 0.04;
+	speed = 0.03;
 	if (key.key == MLX_KEY_LEFT)
 	{
 		rotate_vec(&eng->dir_x, &eng->dir_y, -speed);
@@ -55,26 +55,16 @@ void	pan_direction(t_engine *eng, mlx_key_data_t key)
 
 static void	apply_move(t_engine *eng, double move_x, double move_y)
 {
-	int	next_x;
-	int	next_y;
 	int	cur_x;
 	int	cur_y;
 
 	cur_x = (int)eng->pos_x;
 	cur_y = (int)eng->pos_y;
-	next_x = (int)(eng->pos_x + move_x);
-	next_y = (int)(eng->pos_y + move_y);
-	if (BONUS == 0 && is_walkable_tile(eng, (int)(eng->pos_x + move_x), (int)(eng->pos_y + move_y)))
+	if (is_walkable_tile(eng, (int)(eng->pos_x + move_x),
+		(int)(eng->pos_y + move_y)))
 	{
 		eng->pos_x += move_x;
 		eng->pos_y += move_y;
-	}
-	else if (BONUS == 1)
-	{
-		if (is_walkable_tile(eng, next_x, cur_y))
-			eng->pos_x += move_x;
-		if (is_walkable_tile(eng, cur_x, next_y))
-			eng->pos_y += move_y;
 	}
 }
 
@@ -82,7 +72,7 @@ void	pan_view(t_engine *eng, mlx_key_data_t key)
 {
 	double	s;
 
-	s = 0.05;
+	s = 0.03;
 	if (key.key == MLX_KEY_W)
 		apply_move(eng, eng->dir_x * s, eng->dir_y * s);
 	if (key.key == MLX_KEY_S)

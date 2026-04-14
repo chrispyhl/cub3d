@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimap.c                                          :+:      :+:    :+:   */
+/*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:07:00 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 18:02:41 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/14 15:41:21 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "engine.h"
+#include "engine_bonus.h"
 
 static void	draw_player_icon(t_engine *eng)
 {
@@ -35,6 +35,23 @@ static void	draw_player_icon(t_engine *eng)
 	}
 }
 
+static void	draw_map(t_engine *eng, int *x, int *y)
+{
+	eng->map_x = *x / 10;
+	eng->map_y = *y / 10;
+	if (eng->map_y < (int)eng->settings->map_info->y_height
+		&& eng->map_x
+		< (int)ft_strlen(eng->settings->map_info->map[eng->map_y]))
+	{
+		if (eng->settings->map_info->map[eng->map_y][eng->map_x] == '1')
+			mlx_put_pixel(eng->minimap_img, *x, *y, 0xFFFFFFFF);
+		else
+			mlx_put_pixel(eng->minimap_img, *x, *y, 0x00000088);
+	}
+	else
+		mlx_put_pixel(eng->minimap_img, *x, *y, 0x00000000);
+}
+
 void	draw_minimap(t_engine *eng)
 {
 	int	y;
@@ -46,18 +63,7 @@ void	draw_minimap(t_engine *eng)
 		x = 0;
 		while (x < 200)
 		{
-			map_x = x / 10;
-			map_y = y / 10;
-			if (map_y < (int)eng->settings->map_info->y_height &&
-				map_x < (int)ft_strlen(eng->settings->map_info->map[map_y]))
-			{
-				if (eng->settings->map_info->map[map_y][map_x] == '1')
-					mlx_put_pixel(eng->minimap_img, x, y, 0xFFFFFFFF);
-				else
-					mlx_put_pixel(eng->minimap_img, x, y, 0x00000088);
-			}
-			else
-				mlx_put_pixel(eng->minimap_img, x, y, 0x00000000);
+			draw_map(eng, &x, &y);
 			x++;
 		}
 		y++;
