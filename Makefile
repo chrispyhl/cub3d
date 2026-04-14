@@ -6,7 +6,7 @@
 #    By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/24 12:54:24 by craabe            #+#    #+#              #
-#    Updated: 2026/04/14 15:25:49 by cpohl            ###   ########.fr        #
+#    Updated: 2026/04/14 15:48:01 by cpohl            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,11 +79,11 @@ OBJ_B = $(MAIN_OBJ) $(PAR_OBJ) $(ENG_OBJ_B)
 all: $(NAME)
 
 $(NAME): $(MLX_LIB) $(LIBFT_A) $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME) -D BONUS=0
+	@$(CC) $(CFLAGS) $(OBJ) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
 	@echo "Get chrispy."
 
 bonus: $(MLX_LIB) $(LIBFT_A) $(OBJ_B)
-	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT_A) $(LDFLAGS) -o $(NAME) -D BONUS=1
+	@$(CC) $(CFLAGS) $(OBJ_B) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
 	@echo "Get extra chrispy."
 
 $(LIBFT_A):
