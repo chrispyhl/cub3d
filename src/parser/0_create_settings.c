@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_create_settings.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 17:05:25 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 17:23:22 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/14 18:03:17 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ static t_settings	*create_settings_var(char *arg)
 	settings->player_info = player_info;
 	if (!tex_info || !color_info || !map_info || handle_cub_path(arg,
 			settings) != 1)
+	{
+		free_settings(settings);
 		return (NULL);
+	}
 	populate_settings(settings);
 	return (settings);
 }
@@ -65,10 +68,7 @@ t_settings	*create_settings(char *arg)
 
 	settings = create_settings_var(arg);
 	if (!settings)
-	{
-		free_settings(settings);
 		return (NULL);
-	}
 	if (parse_cub(settings) != 1)
 	{
 		free_settings(settings);
