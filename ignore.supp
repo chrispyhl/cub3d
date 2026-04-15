@@ -79,7 +79,6 @@
    ...
 }
 
-
 {
    llvm_gl_driver_leak
    Memcheck:Leak
