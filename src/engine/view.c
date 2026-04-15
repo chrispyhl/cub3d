@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   view.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 16:59:33 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/14 15:23:01 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/15 11:38:53 by gries            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	pan_direction(t_engine *eng, mlx_key_data_t key)
 
 static void	apply_move(t_engine *eng, double move_x, double move_y)
 {
-	int	cur_x;
-	int	cur_y;
+	// int	cur_x;
+	// int	cur_y;
 
-	cur_x = (int)eng->pos_x;
-	cur_y = (int)eng->pos_y;
+	// cur_x = (int)eng->pos_x;
+	// cur_y = (int)eng->pos_y;
 	if (is_walkable_tile(eng, (int)(eng->pos_x + move_x),
 		(int)(eng->pos_y + move_y)))
 	{
