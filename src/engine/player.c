@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 15:35:53 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/14 15:21:58 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/16 15:42:35 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	set_view_angle(t_engine *engine)
 		engine->dir_x = -1;
 		engine->dir_y = 0;
 	}
-	engine->plane_x = -engine->dir_y * 0.42;
-	engine->plane_y = engine->dir_x * 0.42;
+	engine->plane_x = -engine->dir_y * 0.66;
+	engine->plane_y = engine->dir_x * 0.66;
 }
 
 void	init_player(t_engine *engine)
