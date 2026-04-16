@@ -6,14 +6,14 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 13:07:42 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/13 18:01:03 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/14 18:49:00 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SETTINGS_H
 # define SETTINGS_H
 
-#include <stddef.h>
+# include <stddef.h>
 
 typedef struct s_tex_info
 {

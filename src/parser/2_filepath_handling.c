@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_filepath_handling.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:01 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:10:07 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/14 18:47:22 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ static int	check_filetype(char *path)
 	char	*path_end;
 
 	path_end = ft_strrchr(path, '.');
-	// found no dot --> can't end in .cub
 	if (!path_end)
 		return (0);
-	// last 5 chars .cub and null terminator? --> .cub verified
 	if (ft_strncmp(path_end, ".cub", 5) != 0)
 		return (0);
 	return (1);

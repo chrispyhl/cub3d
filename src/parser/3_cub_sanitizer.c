@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:05 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/01 11:25:44 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/14 18:47:29 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,6 @@ static char	*shorten_spaces(char *full_str, int str_len)
 	j = 0;
 	while (j < str_len)
 	{
-		// TODO: decide:
-		// thought I needed escaped space handling but mb not?
-		// if (full_str[j] == '\\' && full_str[j + 1] == ' ')
-		// 	j++;
 		if (full_str[j] == '\n' || full_str[j] == '\r')
 			break ;
 		short_str[i] = full_str[j];

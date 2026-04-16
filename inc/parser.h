@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:29 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:06:46 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/14 18:48:49 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ typedef enum e_cub_content
 	MAP
 }						t_cub_content;
 
-// linked list for map lines (will become string array in main struct t_settings)
+// linked list for map lines
+// (will become string array in main struct t_settings)
 typedef struct s_map_node
 {
 	char				*line;
