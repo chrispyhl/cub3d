@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 15:21:56 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/13 17:32:24 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/16 17:19:50 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,22 +60,22 @@ static void	set_dda_step(t_engine *eng)
 {
 	if (eng->r_dir_x < 0)
 	{
-		eng->step_x = -1;
-		eng->side_dist_x = (eng->pos_x - eng->map_x) * eng->delta_dist_x;
-	}
+		eng->step_x = -1; // strahl nach links
+		eng->side_dist_x = (eng->pos_x - eng->map_x) * eng->delta_dist_x;	// Kalkulation für Distanz zu seite
+	}																		// Spieler pos - map pos * winkel des strahls
 	else
 	{
-		eng->step_x = 1;
+		eng->step_x = 1; // strahl nach rechts
 		eng->side_dist_x = (eng->map_x + 1.0 - eng->pos_x) * eng->delta_dist_x;
 	}
 	if (eng->r_dir_y < 0)
 	{
-		eng->step_y = -1;
+		eng->step_y = -1; // strahl nach links
 		eng->side_dist_y = (eng->pos_y - eng->map_y) * eng->delta_dist_y;
 	}
 	else
 	{
-		eng->step_y = 1;
+		eng->step_y = 1; // strahl nach rechts
 		eng->side_dist_y = (eng->map_y + 1.0 - eng->pos_y) * eng->delta_dist_y;
 	}
 }

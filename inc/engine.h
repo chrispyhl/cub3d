@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 13:39:24 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/14 15:14:01 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/16 17:35:47 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,34 +25,34 @@
 
 typedef struct s_engine
 {
-	mlx_t			*mlx;
-	mlx_image_t		*img;
-	mlx_image_t		*minimap_img;
-	mlx_texture_t	*no_tex_img;
-	mlx_texture_t	*so_tex_img;
-	mlx_texture_t	*we_tex_img;
-	mlx_texture_t	*ea_tex_img;
-	t_settings		*settings;
-	int				dirty;
-	double			pos_x;
-	double			pos_y;
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
-	double			side_dist_x;
-	double			side_dist_y;
-	double			delta_dist_x;
-	double			delta_dist_y;
-	double			step_x;
-	double			step_y;
-	double			r_dir_x;
-	double			r_dir_y;
-	int				map_x;
-	int				map_y;
-	int				line_h;
-	int				draw_start;
-	int				draw_end;
+	mlx_t			*mlx; // mlx context
+	mlx_image_t		*img; // Hauptbild
+	mlx_image_t		*minimap_img; // Minimap Bild
+	mlx_texture_t	*no_tex_img; // Texture Nord
+	mlx_texture_t	*so_tex_img; // Texture Süd
+	mlx_texture_t	*we_tex_img; // Texture West
+	mlx_texture_t	*ea_tex_img; // Texture Ost
+	t_settings		*settings; // Parser dinge
+	int				dirty; // Für wann redraw
+	double			pos_x; // Spielerposition X.x
+	double			pos_y; // Spielerposition Y.y
+	double			dir_x; // Blickrichtungs Vektor x = 1 = nach rechts schauen
+	double			dir_y; // Blickrichtungs Vektor y = 1 = nach oben schauen
+	double			plane_x; // Orientierung im Raum. (Wo schaue ich gerade hin)
+	double			plane_y; // Vorstellbar wie stoßstange. Vertikale linie vor dem Auge
+	double			side_dist_x; // tatsächliche Distanz zu nächsten Gitterline X
+	double			side_dist_y; // tatsächliche Distanz zu nächsten Gitterline Y
+	double			delta_dist_x; // Horizontale Distanz zur nächsten Gitterlinie X
+	double			delta_dist_y; // Vertikale Distanz zur nächsten Gitterlinie Y
+	double			step_x; // Sprungrichtung für map[x, y]
+	double			step_y; // Sprungrichtung für map[x, y]
+	double			r_dir_x; // ray strahl der in bestimmtem Winkel durch map fliegt
+	double			r_dir_y; // ''
+	int				map_x; // Aktuelle Gitterkoordinate (3)
+	int				map_y; // Aktuelle Gitterkoordinate (2) == map [3 | 2]
+	int				line_h; // Höhe der Wand die gezeichnet werden soll
+	int				draw_start; // Start zu pixeln 
+	int				draw_end; // Ende zu pixeln
 }					t_engine;
 
 // Functions
