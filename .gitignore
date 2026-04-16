@@ -72,3 +72,4 @@ obj/engine/player.o
 obj/engine/render_utils.o
 obj/engine/texture.o
 obj/engine/view.o
+test_output.log
