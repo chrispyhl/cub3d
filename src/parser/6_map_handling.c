@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   6_map_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:23 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 17:23:27 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/16 16:01:44 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
 static void	strip_newlines_spaces(t_settings *settings)
 {

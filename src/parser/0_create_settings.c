@@ -6,12 +6,12 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/24 17:05:25 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/14 18:03:17 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/16 16:01:45 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // TODO: shorten paths when Makefile is ready
-#include "../../inc/parser.h"
+#include "parser.h"
 
 static void	populate_settings(t_settings *settings)
 {

@@ -6,17 +6,17 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:00:27 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/13 17:00:30 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/16 17:34:49 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
-int	print_tex_ver_error_msg(int code)
+int	print_map_ver_error_msg(int code)
 {
 	if (code == 0)
 		ft_putstr_fd("ERROR:\nMap too small or missing.\n", 1);
-	if (code == 1)
+	else if (code == 1)
 		ft_putstr_fd("ERROR:\nMap contains invalid content.\n", 1);
 	else if (code == 2)
 		ft_putstr_fd("ERROR:\nToo many players on map.\n", 1);
@@ -109,7 +109,7 @@ int	verify_borders(t_settings *settings)
 
 	dup = duplicate_map(settings);
 	if (!dup)
-		return (print_tex_ver_error_msg(4));
+		return (print_map_ver_error_msg(4));
 	flood_fill(dup, settings->player_info->player_x,
 		settings->player_info->player_y, settings);
 	if (settings->map_info->spill_flag == 1)

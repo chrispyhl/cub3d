@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   4_texture_handling.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:10 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:02:26 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/16 16:01:44 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
 static void	print_tex_error_msg(int code)
 {

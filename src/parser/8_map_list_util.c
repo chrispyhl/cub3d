@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   8_map_list_util.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:27 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:09:17 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/16 16:01:44 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
 void	free_map_list(t_map_list *map_list)
 {

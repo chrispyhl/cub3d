@@ -6,11 +6,11 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:00:19 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/13 17:00:22 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/16 17:33:27 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
 static size_t	find_min_indent(t_settings *settings)
 {
@@ -89,8 +89,6 @@ int	add_padding(t_settings *settings)
 	size_t	i;
 	size_t	j;
 
-	if (settings->map_info->x_width < 3 || settings->map_info->y_height < 3)
-		return (0);
 	i = 0;
 	while (settings->map_info->map[i])
 	{

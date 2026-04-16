@@ -6,11 +6,11 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:05 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/14 18:47:29 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/16 16:01:44 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
 char	*trim_space_tabs(char *line)
 {

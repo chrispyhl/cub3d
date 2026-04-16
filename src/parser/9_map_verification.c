@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   9_map_verification.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:56:31 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:07:06 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/16 17:11:02 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
 static int	add_player_info(t_settings *settings, int i, int j, char dir)
 {
@@ -40,11 +40,11 @@ static int	verify_contents(t_settings *settings)
 				&& current_char != 'W' && current_char != 'E'
 				&& current_char != '1' && current_char != '0'
 				&& current_char != ' ')
-				return (print_tex_ver_error_msg(1));
+				return (print_map_ver_error_msg(1));
 			else if (current_char == 'N' || current_char == 'S'
 				|| current_char == 'W' || current_char == 'E')
 				if (add_player_info(settings, i, j, current_char) != 1)
-					return (print_tex_ver_error_msg(2));
+					return (print_map_ver_error_msg(2));
 			j++;
 		}
 		i++;
@@ -54,14 +54,11 @@ static int	verify_contents(t_settings *settings)
 
 int	verify_map_info(t_settings *settings)
 {
-	if (settings->map_info->x_width < 3 || settings->map_info->y_height < 3
-		|| !settings->map_info->map)
-		return (print_tex_ver_error_msg(0));
 	if (verify_contents(settings) != 1)
 		return (0);
 	if (settings->player_info->dir == 'x')
-		return (print_tex_ver_error_msg(3));
+		return (print_map_ver_error_msg(3));
 	if (verify_borders(settings) != 1)
-		return (print_tex_ver_error_msg(5));
+		return (print_map_ver_error_msg(5));
 	return (1);
 }

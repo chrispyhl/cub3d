@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:29 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/14 18:48:49 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/16 16:26:43 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int						add_color_info(t_settings *settings, char *line);
 int						add_map_info(t_settings *settings,
 							t_map_list *map_list);
 
-// parsing
+// PARSING
 int						parse_cub(t_settings *settings);
 
 // VERIFICATION
@@ -69,8 +69,8 @@ int						add_map_node(t_map_list *map_list, char *line);
 // MAP VERIFICATION
 int						verify_map_info(t_settings *settings);
 
-// MAP VERIFICATION UTIl
-int						print_tex_ver_error_msg(int code);
+// MAP VERIFICATION UTIL
+int						print_map_ver_error_msg(int code);
 int						verify_borders(t_settings *settings);
 
 #endif

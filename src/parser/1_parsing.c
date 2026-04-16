@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   1_parsing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gries <gries@student.42.fr>                +#+  +:+       +#+        */
+/*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:56 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/03 18:06:33 by gries            ###   ########.fr       */
+/*   Updated: 2026/04/16 17:29:51 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/parser.h"
+#include "parser.h"
 
 static int	print_error_msg(int code)
 {
@@ -102,6 +102,12 @@ int	parse_cub(t_settings *settings)
 	close(fd);
 	if (add_map_info(settings, map_list) != 1)
 		valid_flag = 0;
+	if (valid_flag == 1 && (settings->map_info->x_width < 3
+			|| settings->map_info->y_height < 3))
+	{
+		print_map_ver_error_msg(0);
+		valid_flag = 0;
+	}
 	free_map_list(map_list);
 	return (valid_flag);
 }
