@@ -6,7 +6,7 @@
 /*   By: craabe <craabe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 09:55:44 by craabe            #+#    #+#             */
-/*   Updated: 2026/04/14 17:56:06 by craabe           ###   ########.fr       */
+/*   Updated: 2026/04/16 15:42:21 by craabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		if (argc < 2)
-			ft_putstr_fd("No argument!\n", 1);
+			ft_putstr_fd("ERROR\nNo argument!\n", 1);
 		else
-			ft_putstr_fd("Too many arguments!\n", 1);
+			ft_putstr_fd("ERROR\nToo many arguments!\n", 1);
 		return (1);
 	}
 	settings = create_settings(argv[1]);
