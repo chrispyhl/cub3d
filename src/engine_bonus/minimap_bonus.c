@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpohl <cpohl@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: cpohl <cpohl@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 17:07:00 by cpohl             #+#    #+#             */
-/*   Updated: 2026/04/14 15:41:21 by cpohl            ###   ########.fr       */
+/*   Updated: 2026/04/16 16:25:45 by cpohl            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,19 @@ static void	draw_player_icon(t_engine *eng)
 
 static void	draw_map(t_engine *eng, int *x, int *y)
 {
-	eng->map_x = *x / 10;
-	eng->map_y = *y / 10;
-	if (eng->map_y < (int)eng->settings->map_info->y_height
-		&& eng->map_x
-		< (int)ft_strlen(eng->settings->map_info->map[eng->map_y]))
+	int	mappy_x;
+	int	mappy_y;
+
+	mappy_x = *x / 10;
+	mappy_y = *y / 10;
+	if (mappy_y < (int)eng->settings->map_info->y_height
+		&& mappy_x
+		< (int)ft_strlen(eng->settings->map_info->map[mappy_y]))
 	{
-		if (eng->settings->map_info->map[eng->map_y][eng->map_x] == '1')
+		if (eng->settings->map_info->map[mappy_y][mappy_x] == '1')
 			mlx_put_pixel(eng->minimap_img, *x, *y, 0xFFFFFFFF);
+		else if (eng->settings->map_info->map[mappy_y][mappy_x] == ' ')
+			mlx_put_pixel(eng->minimap_img, *x, *y, 0x00000000);
 		else
 			mlx_put_pixel(eng->minimap_img, *x, *y, 0x00000088);
 	}
