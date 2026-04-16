@@ -1,0 +1,10 @@
+NO ./textures/NO.png
+SO ./textures/SO.png
+WE ./textures/WE.png
+EA ./textures/EA.png
+
+F 85,255,85
+C 85,85,255
+
+        111111111111
+        111111111111
